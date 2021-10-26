@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerInput : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 1;
     private float walkValue;
@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnJump()
     {
-        rigid.velocity = new Vector2(rigid.velocity.x, jumpStrength);
+        rigid.AddForce(jumpStrength * Vector2.up, ForceMode2D.Impulse);
     }
 
     private void OnCrouch(InputValue _value)
