@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField] private EnergyBar energy;
     private bool isCharging = false;
 
+    private AbilityState currentState;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -24,6 +26,8 @@ public class Player : MonoBehaviour
 
 
         groundMask = LayerMask.GetMask("Ground");
+
+
     }
 
     private void Update()
