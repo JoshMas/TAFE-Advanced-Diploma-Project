@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float jumpStrength = 1;
     Rigidbody2D rigid;
+    LayerMask groundMask;
 
     
     [SerializeField] private EnergyBar energy;
@@ -20,6 +21,9 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         energy.Initialise();
+
+
+        groundMask = LayerMask.GetMask("Ground");
     }
 
     private void Update()
@@ -33,18 +37,24 @@ public class Player : MonoBehaviour
 
     private void OnJump()
     {
-        rigid.AddForce(jumpStrength * Vector2.up, ForceMode2D.Impulse);
+        if(IsGrounded())
+            rigid.AddForce(jumpStrength * Vector2.up, ForceMode2D.Impulse);
     }
 
     private void OnCrouch(InputValue _value)
     {
-        transform.localScale = new Vector3(1, _value.isPressed ? .5f : 1, 1);
         isCharging = _value.isPressed;
-        walkSpeed *= _value.isPressed ? .5f : 2;
+        transform.localScale = new Vector3(1, isCharging ? .5f : 1, 1);
+        walkSpeed *= isCharging ? .5f : 2;
     }
 
     private void OnWalk(InputValue _value)
     {
         walkValue = _value.Get<float>();
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapBox(transform.position, new Vector2(1, .1f), 0, groundMask);
     }
 }
