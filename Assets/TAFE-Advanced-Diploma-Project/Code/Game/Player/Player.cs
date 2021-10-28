@@ -7,58 +7,99 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 1;
-    private float walkValue;
+    public float WalkSpeed => walkSpeed;
+    public float currentSpeed;
 
     [SerializeField] private float jumpStrength = 1;
-    Rigidbody2D rigid;
-    LayerMask groundMask;
+    public float JumpStrength => jumpStrength;
+
+    public Rigidbody2D Rigid { get; private set; }
+    private LayerMask groundMask;
 
     
     [SerializeField] private EnergyBar energy;
+    public EnergyBar Energy => energy;
+    
     private bool isCharging = false;
 
-    private AbilityState currentState;
+    [SerializeField] private AbilityState currentState;
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        Rigid = GetComponent<Rigidbody2D>();
         energy.Initialise();
 
 
         groundMask = LayerMask.GetMask("Ground");
-
-
+        if(currentState != null)
+            currentState.OnEnter(this);
     }
 
     private void Update()
     {
-        rigid.velocity = new Vector2(walkValue * walkSpeed, rigid.velocity.y);
-        if (isCharging)
+        currentState.OnUpdate();
+    }
+
+    public void ChangeState(AbilityState _newState)
+    {
+        if(currentState != null)
         {
-            energy.Charge();
+            currentState.OnExit();
+        }
+        currentState = _newState;
+        if(currentState != null)
+        {
+            currentState.OnEnter(this);
         }
     }
 
     private void OnJump()
     {
-        if(IsGrounded())
-            rigid.AddForce(jumpStrength * Vector2.up, ForceMode2D.Impulse);
+        currentState.OnJump();
     }
 
     private void OnCrouch(InputValue _value)
     {
-        isCharging = _value.isPressed;
+        currentState.OnCrouch(_value.isPressed);
+    }
+
+    public void Crouch(bool _isPressed)
+    {
+        isCharging = _isPressed;
         transform.localScale = new Vector3(1, isCharging ? .5f : 1, 1);
         walkSpeed *= isCharging ? .5f : 2;
     }
 
     private void OnWalk(InputValue _value)
     {
-        walkValue = _value.Get<float>();
+        currentState.OnWalk(_value.Get<float>());
     }
 
-    private bool IsGrounded()
+    private void OnAbilityOne()
+    {
+        currentState.OnAbilityOne();
+    }
+
+    private void OnAbilityTwo()
+    {
+        currentState.OnAbilityTwo();
+    }
+
+    public bool IsGrounded()
     {
         return Physics2D.OverlapBox(transform.position, new Vector2(1, .1f), 0, groundMask);
+    }
+
+    public void Charge()
+    {
+        if (isCharging)
+        {
+            energy.Charge();
+        }
+    }
+
+    private void OnOpenMenu()
+    {
+
     }
 }
