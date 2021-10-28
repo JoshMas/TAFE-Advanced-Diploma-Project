@@ -7,14 +7,17 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 1;
-    public float WalkSpeed => walkSpeed;
-    public float currentSpeed;
+    public float WalkSpeed => walkSpeed * walkSpeedMultiplier;
+    public float targetSpeedAxis;
+    private float walkSpeedMultiplier = 1;
 
     [SerializeField] private float jumpStrength = 1;
     public float JumpStrength => jumpStrength;
 
     public Rigidbody2D Rigid { get; private set; }
     private LayerMask groundMask;
+    private Vector2 groundCheckBounds = new Vector2(.9f, .1f);
+    private Vector2 wallCheckBounds = new Vector2(.1f, 1.6f);
 
     
     [SerializeField] private EnergyBar energy;
@@ -67,12 +70,13 @@ public class Player : MonoBehaviour
     {
         isCharging = _isPressed;
         transform.localScale = new Vector3(1, isCharging ? .5f : 1, 1);
-        walkSpeed *= isCharging ? .5f : 2;
+        walkSpeedMultiplier = isCharging ? .5f : 1;
     }
 
     private void OnWalk(InputValue _value)
     {
         currentState.OnWalk(_value.Get<float>());
+        //Debug.Log(_value.Get<float>());
     }
 
     private void OnAbilityOne()
@@ -87,7 +91,17 @@ public class Player : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics2D.OverlapBox(transform.position, new Vector2(1, .1f), 0, groundMask);
+        return Physics2D.OverlapBox(transform.position, groundCheckBounds, 0, groundMask);
+    }
+
+    public bool IsWallClinging()
+    {
+        return !IsGrounded() && Physics2D.OverlapBox(transform.position + transform.up + .5f * transform.right, wallCheckBounds, 0, groundMask);
+    }
+
+    public bool IsStillWallClinging()
+    {
+        return !IsGrounded() && Physics2D.OverlapBox(transform.position + transform.up - .5f * transform.right, wallCheckBounds, 0, groundMask);
     }
 
     public void Charge()
@@ -100,6 +114,6 @@ public class Player : MonoBehaviour
 
     private void OnOpenMenu()
     {
-
+        Application.Quit();
     }
 }

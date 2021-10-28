@@ -11,7 +11,7 @@ public class EnergyBar
     [SerializeField] private Image energyBarImage;
     private float barWidth;
     private float barheight;
-    private float currentEnergy = 0;
+    private float currentEnergy = 50;
 
     public void Initialise()
     {

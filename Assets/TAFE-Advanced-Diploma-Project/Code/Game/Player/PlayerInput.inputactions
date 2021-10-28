@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "Walk",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "ffe3f6ec-bfd1-4997-b2de-4dcec99f5c9f",
                     "expectedControlType": "",
                     "processors": "",
@@ -169,6 +169,17 @@
                     "name": "",
                     "id": "7d292584-0562-48d9-8de5-9a4bca32b721",
                     "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "Ability One",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f9f475e-ac65-4263-9fcd-a54582918a26",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",

@@ -5,27 +5,29 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Dash")]
 public class DashState : AbilityState
 {
+    [SerializeField] private float dashSpeed = 25;
 
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
+        player.Rigid.velocity = Vector2.zero;
         if (player.Energy.HasEnergy())
         {
             player.Energy.Spend(abilityCost);
         }
         else
         {
-            player.ChangeState(transitions[0]);
+            ChangeState(typeof(DefaultState));
         }
     }
 
     public override void OnUpdate()
     {
-        player.Rigid.MovePosition(player.transform.position + player.transform.right);
+        player.Rigid.MovePosition(player.transform.position + Time.deltaTime * dashSpeed * player.transform.right);
         timer += Time.deltaTime;
-        if(timer >= abilityDuration)
+        if(timer >= abilityTimeKeeper)
         {
-            player.ChangeState(transitions[0]);
+            ChangeState(typeof(DefaultState));
         }
     }
 }
