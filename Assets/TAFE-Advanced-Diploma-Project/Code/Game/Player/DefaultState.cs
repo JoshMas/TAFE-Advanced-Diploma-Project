@@ -31,17 +31,10 @@ public class DefaultState : AbilityState
         }
     }
 
-    public override void OnWalk(float _walkSpeed)
-    {
-        base.OnWalk(_walkSpeed);
-        
-    }
-
     public override void OnJump()
     {
         if (player.IsGrounded())
         {
-
             player.Rigid.velocity = new Vector2(player.Rigid.velocity.x, player.JumpStrength);
         }
     }
@@ -57,5 +50,13 @@ public class DefaultState : AbilityState
     public override void OnAbilityOne()
     {
         ChangeState(typeof(DashState));
+    }
+
+    public override void OnAbilityTwo(bool _isPressed)
+    {
+        if (_isPressed)
+        {
+            ChangeState(typeof(GrappleState));
+        }
     }
 }

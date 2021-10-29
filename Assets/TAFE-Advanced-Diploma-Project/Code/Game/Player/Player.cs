@@ -15,15 +15,28 @@ public class Player : MonoBehaviour
     public float JumpStrength => jumpStrength;
 
     public Rigidbody2D Rigid { get; private set; }
+
+    #region grapplingHook
+    [SerializeField] private GameObject grappleTemplate;
+    public Transform Grapple { get; private set; }
+    private LineRenderer grappleLine;
+    private SpringJoint2D grappleSpring;
+    #endregion
+
+    #region collisionChecks
     private LayerMask groundMask;
+    public LayerMask GroundMask => groundMask;
+
     private Vector2 groundCheckBounds = new Vector2(.9f, .1f);
     private Vector2 wallCheckBounds = new Vector2(.1f, 1.6f);
+    #endregion
 
-    
+    #region energybar
     [SerializeField] private EnergyBar energy;
     public EnergyBar Energy => energy;
     
     private bool isCharging = false;
+    #endregion
 
     [SerializeField] private AbilityState currentState;
 
@@ -32,10 +45,16 @@ public class Player : MonoBehaviour
         Rigid = GetComponent<Rigidbody2D>();
         energy.Initialise();
 
-
         groundMask = LayerMask.GetMask("Ground");
         if(currentState != null)
             currentState.OnEnter(this);
+
+        Grapple = Instantiate(grappleTemplate).transform;
+        grappleLine = Grapple.GetComponent<LineRenderer>();
+        grappleSpring = Grapple.GetComponent<SpringJoint2D>();
+        grappleSpring.connectedBody = Rigid;
+        grappleSpring.enabled = false;
+        Grapple.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -75,7 +94,7 @@ public class Player : MonoBehaviour
 
     private void OnWalk(InputValue _value)
     {
-        currentState.OnWalk(_value.Get<float>());
+        currentState.OnMove(_value.Get<float>());
         //Debug.Log(_value.Get<float>());
     }
 
@@ -84,9 +103,9 @@ public class Player : MonoBehaviour
         currentState.OnAbilityOne();
     }
 
-    private void OnAbilityTwo()
+    private void OnAbilityTwo(InputValue _value)
     {
-        currentState.OnAbilityTwo();
+        currentState.OnAbilityTwo(_value.isPressed);
     }
 
     public bool IsGrounded()
@@ -110,6 +129,30 @@ public class Player : MonoBehaviour
         {
             energy.Charge();
         }
+    }
+
+    public Vector2 GetMouseDirection()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Debug.Log(mousePos);
+        return (mousePos - transform.position).normalized;
+    }
+
+    public void GrappleActive(bool _isActive)
+    {
+        Grapple.gameObject.SetActive(_isActive);
+    }
+
+    public void GrappleAttach(bool _isAttached)
+    {
+        grappleSpring.enabled = _isAttached;
+    }
+
+    public void UpdateGrapplePosition(Vector2 _position)
+    {
+        Grapple.position = _position;
+        grappleLine.SetPosition(0, transform.position);
+        grappleLine.SetPosition(1, Grapple.position);
     }
 
     private void OnOpenMenu()

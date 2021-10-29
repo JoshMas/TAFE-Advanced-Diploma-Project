@@ -43,7 +43,7 @@
                     "id": "b791fb96-ae11-49d4-9325-e1cdfc1dd3de",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "OpenMenu",
@@ -191,6 +191,17 @@
                     "name": "",
                     "id": "2a3c78e9-d7b8-4bae-924a-71fadb6033ab",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "Ability Two",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "504bf502-c487-401f-8b90-833c7d8ef7db",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",

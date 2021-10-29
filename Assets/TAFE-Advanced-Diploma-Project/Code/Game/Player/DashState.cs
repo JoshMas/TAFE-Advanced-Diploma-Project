@@ -14,6 +14,7 @@ public class DashState : AbilityState
         if (player.Energy.HasEnergy())
         {
             player.Energy.Spend(abilityCost);
+            player.Rigid.velocity = dashSpeed * player.transform.right;
         }
         else
         {
@@ -23,11 +24,19 @@ public class DashState : AbilityState
 
     public override void OnUpdate()
     {
-        player.Rigid.MovePosition(player.transform.position + Time.deltaTime * dashSpeed * player.transform.right);
+        //player.Rigid.MovePosition(player.transform.position + Time.deltaTime * dashSpeed * player.transform.right);
         timer += Time.deltaTime;
         if(timer >= abilityTimeKeeper)
         {
             ChangeState(typeof(DefaultState));
+        }
+    }
+
+    public override void OnAbilityTwo(bool _isPressed)
+    {
+        if (_isPressed)
+        {
+            ChangeState(typeof(GrappleState));
         }
     }
 }

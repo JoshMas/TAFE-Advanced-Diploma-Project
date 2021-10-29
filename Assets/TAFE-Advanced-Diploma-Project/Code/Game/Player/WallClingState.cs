@@ -18,9 +18,9 @@ public class WallClingState : AbilityState
         player.transform.forward = -player.transform.forward;
     }
 
-    public override void OnWalk(float _walkSpeed)
+    public override void OnMove(float _walkSpeed)
     {
-        base.OnWalk(_walkSpeed);
+        base.OnMove(_walkSpeed);
         if (_walkSpeed == player.transform.right.x)
         {
             ChangeState(typeof(DefaultState));
@@ -44,7 +44,6 @@ public class WallClingState : AbilityState
                 timer2 = 0;
                 if (!player.IsStillWallClinging())
                 {
-                    Debug.Log("a");
                     ChangeState(typeof(DefaultState));
                 }
             }
