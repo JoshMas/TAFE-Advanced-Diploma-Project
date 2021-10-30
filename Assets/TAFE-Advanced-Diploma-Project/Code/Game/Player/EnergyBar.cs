@@ -13,6 +13,8 @@ public class EnergyBar
     private float barheight;
     private float currentEnergy = 50;
 
+    private float denyGainTimer = 0;
+
     public void Initialise()
     {
         barWidth = energyBarImage.rectTransform.rect.width;
@@ -27,14 +29,34 @@ public class EnergyBar
 
     public void Charge()
     {
-        currentEnergy += rateOfGain * Time.deltaTime;
-        UpdateEnergyBar();
+        if(denyGainTimer <= 0)
+        {
+            currentEnergy += rateOfGain * Time.deltaTime;
+            UpdateEnergyBar();
+        }
     }
 
-    public void Drain(float _rateOfDrain)
+    /// <summary>
+    /// Use this method to make the player take damage.
+    /// It removes a chunk of health, and they cannot regain health by crouching for some time.
+    /// If they take a hit at zero health, it's game over
+    /// </summary>
+    /// <param name="_damage">The amount of energy deducted</param>
+    /// <param name="_time">The amount of time the player cannot regenerate energy</param>
+    /// <returns>If the player has died, this returns true</returns>
+    public bool TakeDamage(float _damage, float _time)
     {
-        currentEnergy -= _rateOfDrain * Time.deltaTime;
+        if(currentEnergy <= 0)
+        {
+            return true;
+        }
+        currentEnergy -= _damage;
         UpdateEnergyBar();
+        if(_time > denyGainTimer)
+        {
+            denyGainTimer = _time;
+        }
+        return false;
     }
 
     public void Spend(float _energyCost)
