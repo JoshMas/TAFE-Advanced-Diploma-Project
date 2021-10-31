@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         currentState.OnUpdate();
+        energy.CountDownDenial();
     }
 
     public void ChangeState(AbilityState _newState)
@@ -153,6 +154,15 @@ public class Player : MonoBehaviour
         Grapple.position = _position;
         grappleLine.SetPosition(0, transform.position);
         grappleLine.SetPosition(1, Grapple.position);
+    }
+
+    public void TakeDamage(float _damage, float _time)
+    {
+        if(energy.TakeDamage(_damage, _time))
+        {
+            //Game Over here
+            Debug.Log("Game Over");
+        }
     }
 
     private void OnOpenMenu()
