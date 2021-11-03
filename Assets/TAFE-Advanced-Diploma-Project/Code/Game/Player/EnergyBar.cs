@@ -44,6 +44,15 @@ public class EnergyBar
         }
     }
 
+    public void PassiveGain(float _rate)
+    {
+        if(denyGainTimer <= 0)
+        {
+            currentEnergy += _rate * Time.deltaTime;
+            UpdateEnergyBar();
+        }
+    }
+
     /// <summary>
     /// Use this method to make the player take damage.
     /// It removes a chunk of health, and they cannot regain health by crouching for some time.

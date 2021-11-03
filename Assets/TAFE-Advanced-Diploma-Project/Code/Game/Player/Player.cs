@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
     public EnergyBar Energy => energy;
     
     private bool isCharging = false;
+
+    [SerializeField] private float passiveChargeRate = 1;
     #endregion
 
     [SerializeField] private AbilityState currentState;
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
     {
         currentState.OnUpdate();
         energy.CountDownDenial();
+        energy.PassiveGain(passiveChargeRate);
     }
 
     public void ChangeState(AbilityState _newState)
