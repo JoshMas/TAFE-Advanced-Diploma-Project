@@ -6,16 +6,21 @@ using UnityEngine;
 public class WallClingState : AbilityState
 {
     [SerializeField] private float slideSpeed = 1;
+    [SerializeField] private Vector2 wallJumpStrength;
     private bool hasJumped = false;
 
     private float timer2 = 0;
     [SerializeField] private float wallCheckInterval = .5f;
+
+    private float gravityScale = 0;
 
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
         player.Rigid.velocity = Vector2.zero;
         player.transform.forward = -player.transform.forward;
+        gravityScale = player.Rigid.gravityScale;
+        player.Rigid.gravityScale = 0;
     }
 
     public override void OnMove(float _walkSpeed)
@@ -29,7 +34,9 @@ public class WallClingState : AbilityState
 
     public override void OnJump()
     {
-        player.Rigid.AddForce(Vector3.up * player.JumpStrength + player.transform.right * 5, ForceMode2D.Impulse);
+        if (hasJumped)
+            return;
+        player.Rigid.AddForce(Vector3.up * wallJumpStrength.y + player.transform.right * wallJumpStrength.x, ForceMode2D.Impulse);
         hasJumped = true;
     }
 
@@ -62,5 +69,6 @@ public class WallClingState : AbilityState
     {
         base.OnExit();
         hasJumped = false;
+        player.Rigid.gravityScale = gravityScale;
     }
 }

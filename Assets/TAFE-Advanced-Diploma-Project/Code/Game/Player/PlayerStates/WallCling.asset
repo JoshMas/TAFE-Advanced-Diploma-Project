@@ -17,4 +17,5 @@ MonoBehaviour:
   abilityTimeKeeper: 0.25
   abilityCost: 10
   slideSpeed: 0.25
+  wallJumpStrength: {x: 5, y: 7}
   wallCheckInterval: 0.1
