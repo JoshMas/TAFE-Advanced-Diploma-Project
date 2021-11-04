@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject grappleTemplate;
     public Transform Grapple { get; private set; }
     private LineRenderer grappleLine;
-    private SpringJoint2D grappleSpring;
+    private DistanceJoint2D grappleSpring;
     #endregion
 
     #region collisionChecks
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
         Grapple = Instantiate(grappleTemplate).transform;
         grappleLine = Grapple.GetComponent<LineRenderer>();
-        grappleSpring = Grapple.GetComponent<SpringJoint2D>();
+        grappleSpring = Grapple.GetComponent<DistanceJoint2D>();
         grappleSpring.connectedBody = Rigid;
         grappleSpring.enabled = false;
         Grapple.gameObject.SetActive(false);

@@ -34,7 +34,6 @@ public class GrappleState : AbilityState
 
     public override void OnUpdate()
     {
-        player.Rigid.AddForce(player.targetSpeedAxis * swingStrength * Vector2.right);
         if (attached)
         {
             player.UpdateGrapplePosition(player.Grapple.position);
@@ -57,6 +56,11 @@ public class GrappleState : AbilityState
         {
             player.UpdateGrapplePosition(Vector2.MoveTowards(player.Grapple.position, targetLocation, grappleSpeed * Time.deltaTime));
         }
+    }
+
+    public override void OnFixedUpdate()
+    {
+        player.Rigid.AddForce(player.targetSpeedAxis * swingStrength * Vector2.right);
     }
 
     public override void OnAbilityTwo(bool _isPressed)

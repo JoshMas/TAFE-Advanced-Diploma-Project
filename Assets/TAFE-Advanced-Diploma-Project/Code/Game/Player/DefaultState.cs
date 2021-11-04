@@ -10,6 +10,12 @@ public class DefaultState : AbilityState
 
     private float midairJumpTimer = 0;
 
+    public override void OnEnter(Player _player)
+    {
+        base.OnEnter(_player);
+        midairJumpCounter = 0;
+    }
+
     public override void OnUpdate()
     {
 
