@@ -138,7 +138,6 @@ public class Player : MonoBehaviour
     public Vector2 GetMouseDirection()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Debug.Log(mousePos);
         return (mousePos - transform.position).normalized;
     }
 
@@ -150,6 +149,11 @@ public class Player : MonoBehaviour
     public void GrappleAttach(bool _isAttached)
     {
         grappleSpring.enabled = _isAttached;
+    }
+
+    public void ReparentGrapple(Transform _newParent)
+    {
+        grappleSpring.transform.parent = _newParent;
     }
 
     public void UpdateGrapplePosition(Vector2 _position)

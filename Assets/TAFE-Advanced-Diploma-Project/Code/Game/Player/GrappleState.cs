@@ -11,6 +11,7 @@ public class GrappleState : AbilityState
 
     private Vector2 targetLocation = Vector2.zero;
     private bool targetFound = false;
+    private Transform targetTransform;
     private bool attached = false;
 
     public override void OnEnter(Player _player)
@@ -44,6 +45,7 @@ public class GrappleState : AbilityState
             if (targetFound)
             {
                 player.GrappleAttach(true);
+                player.ReparentGrapple(targetTransform);
                 attached = true;
             }
             else
@@ -68,10 +70,11 @@ public class GrappleState : AbilityState
     public override void OnExit()
     {
         base.OnExit();
-        Debug.Log("a");
         attached = false;
         targetFound = false;
         targetLocation = Vector2.zero;
+        targetTransform = null;
+        player.ReparentGrapple(null);
         player.UpdateGrapplePosition(player.transform.position);
         player.GrappleAttach(false);
         player.GrappleActive(false);
@@ -84,6 +87,7 @@ public class GrappleState : AbilityState
         if(hit.transform != null)
         {
             targetFound = true;
+            targetTransform = hit.transform;
             return hit.point;
         }
         else
