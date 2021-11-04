@@ -5,7 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Default")]
 public class DefaultState : AbilityState
 {
-    [SerializeField] private int numOfMidairJumps = 1;
+    [SerializeField] private int maxMidairJumps = 1;
+    private int midairJumpCounter = 0;
+
+    private float midairJumpTimer = 0;
+
     public override void OnUpdate()
     {
 
@@ -15,6 +19,17 @@ public class DefaultState : AbilityState
             if (player.IsWallClinging())
             {
                 ChangeState(typeof(WallClingState));
+            }
+        }
+
+        if(midairJumpCounter >= maxMidairJumps)
+        {
+            midairJumpTimer += Time.deltaTime;
+            if(midairJumpTimer > .1f)
+            {
+                midairJumpTimer = 0;
+                if (player.IsGrounded())
+                    midairJumpCounter = 0;
             }
         }
     }
@@ -41,6 +56,11 @@ public class DefaultState : AbilityState
         if (player.IsGrounded())
         {
             player.Rigid.velocity = new Vector2(player.Rigid.velocity.x, player.JumpStrength);
+        }
+        else if(maxMidairJumps > midairJumpCounter)
+        {
+            player.Rigid.velocity = new Vector2(player.Rigid.velocity.x, player.JumpStrength);
+            ++midairJumpCounter;
         }
     }
 
