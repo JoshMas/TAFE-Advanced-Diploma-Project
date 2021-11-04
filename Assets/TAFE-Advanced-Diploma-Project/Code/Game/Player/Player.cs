@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 
     private void OnWalk(InputValue _value)
     {
-        currentState.OnMove(_value.Get<float>());
+        currentState.OnMove(_value.Get<Vector2>());
         //Debug.Log(_value.Get<float>());
     }
 

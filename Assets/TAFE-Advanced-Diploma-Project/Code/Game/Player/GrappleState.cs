@@ -57,11 +57,6 @@ public class GrappleState : AbilityState
         }
     }
 
-    public override void OnMove(float _walkSpeed)
-    {
-        base.OnMove(_walkSpeed);
-    }
-
     public override void OnAbilityTwo(bool _isPressed)
     {
         if (!_isPressed)
