@@ -42,12 +42,12 @@ public class WallClingState : AbilityState
         hasJumped = true;
     }
 
-    public override void OnUpdate()
+    public override void OnFixedUpdate()
     {
         if (!hasJumped)
         {
             player.Rigid.MovePosition(player.transform.position + Time.deltaTime * slideSpeed * climbValue * Vector3.up);
-            timer2 += Time.deltaTime;
+            timer2 += Time.fixedDeltaTime;
             if(timer2 > wallCheckInterval)
             {
                 timer2 = 0;
@@ -59,7 +59,7 @@ public class WallClingState : AbilityState
         }
         else
         {
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
             if(timer >= abilityTimeKeeper)
             {
                 ChangeState(typeof(DefaultState));
@@ -71,6 +71,7 @@ public class WallClingState : AbilityState
     {
         base.OnExit();
         hasJumped = false;
+        climbValue = 0;
         player.Rigid.gravityScale = gravityScale;
     }
 }

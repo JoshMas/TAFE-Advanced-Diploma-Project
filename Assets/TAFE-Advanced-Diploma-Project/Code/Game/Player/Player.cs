@@ -66,6 +66,11 @@ public class Player : MonoBehaviour
         energy.PassiveGain(passiveChargeRate);
     }
 
+    private void FixedUpdate()
+    {
+        currentState.OnFixedUpdate();
+    }
+
     public void ChangeState(AbilityState _newState)
     {
         if(currentState != null)

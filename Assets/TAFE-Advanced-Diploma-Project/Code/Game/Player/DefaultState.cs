@@ -5,8 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Default")]
 public class DefaultState : AbilityState
 {
-
+    [SerializeField] private int numOfMidairJumps = 1;
     public override void OnUpdate()
+    {
+
+        timer += Time.deltaTime;
+        if (timer > abilityTimeKeeper)
+        {
+            if (player.IsWallClinging())
+            {
+                ChangeState(typeof(WallClingState));
+            }
+        }
+    }
+
+    public override void OnFixedUpdate()
     {
         Vector2 targetSpeed = new Vector2(player.targetSpeedAxis * player.WalkSpeed, player.Rigid.velocity.y);
         player.Rigid.velocity = Vector2.Lerp(player.Rigid.velocity, targetSpeed, 10 * Time.deltaTime);
@@ -20,15 +33,7 @@ public class DefaultState : AbilityState
         {
             player.transform.forward = Vector3.back;
         }
-
-        timer += Time.deltaTime;
-        if (timer > abilityTimeKeeper)
-        {
-            if (player.IsWallClinging())
-            {
-                ChangeState(typeof(WallClingState));
-            }
-        }
+        
     }
 
     public override void OnJump()
