@@ -16,6 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c7f02743899f63488f765939f2f1035, type: 2}
   abilityTimeKeeper: 0.25
   abilityCost: 10
-  slideSpeed: 0.25
+  slideSpeed: 7
   wallJumpStrength: {x: 5, y: 7}
   wallCheckInterval: 0.1
