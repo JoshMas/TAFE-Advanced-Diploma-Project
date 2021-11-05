@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public Rigidbody2D Rigid { get; private set; }
 
+    public Animator Animator { get; private set; }
+
     #region grapplingHook
     [SerializeField] private GameObject grappleTemplate;
     public Transform Grapple { get; private set; }
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody2D>();
+        Animator = GetComponent<Animator>();
+
         energy.Initialise();
 
         groundMask = LayerMask.GetMask("Ground");
