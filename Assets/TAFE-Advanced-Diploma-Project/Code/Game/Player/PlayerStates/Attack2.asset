@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7fd72ba1f72bb4a8dcbef04be8e054, type: 3}
-  m_Name: DashState
+  m_Script: {fileID: 11500000, guid: c3ab5d9931a0b224b932a1288ccc3d9d, type: 3}
+  m_Name: Attack2
   m_EditorClassIdentifier: 
   transitions:
+  - {fileID: 11400000, guid: 0ca27ed5071c45648a554c5e81c033b7, type: 2}
   - {fileID: 11400000, guid: 6c7f02743899f63488f765939f2f1035, type: 2}
-  - {fileID: 11400000, guid: da036acea39265449aa4d2db7fde3bca, type: 2}
-  - {fileID: 11400000, guid: dd1e08d392ac6da44bb3f4e9311a810b, type: 2}
-  abilityTimeKeeper: 0.1
-  abilityCost: 25
-  dashSpeed: 25
-  horizontalOnly: 1
+  abilityTimeKeeper: 1
+  abilityCost: 10
+  attack: {fileID: 0}
+  recovery: {fileID: 0}
+  comboEnder: 0

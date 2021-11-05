@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     #endregion
 
     [SerializeField] private AbilityState currentState;
+    private bool isParrying = false;
+    public bool Parrying => isParrying;
 
     private void Awake()
     {

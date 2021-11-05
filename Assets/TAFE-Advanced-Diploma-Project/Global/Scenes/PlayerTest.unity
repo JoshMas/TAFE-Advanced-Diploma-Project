@@ -243,8 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63047549f715b914d994b780eb1ddcd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 8
-  targetSpeedAxis: 0
+  targetSpeedAxis: {x: 0, y: 0}
   jumpStrength: 14
   grappleTemplate: {fileID: 8494344551401538118, guid: 82db001b0d252154f95049c382285d7f, type: 3}
   energy:
@@ -345,7 +344,7 @@ GameObject:
   - component: {fileID: 100403330}
   - component: {fileID: 100403329}
   - component: {fileID: 100403334}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

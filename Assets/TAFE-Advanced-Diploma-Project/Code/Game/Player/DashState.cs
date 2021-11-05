@@ -6,6 +6,7 @@ using UnityEngine;
 public class DashState : AbilityState
 {
     [SerializeField] private float dashSpeed = 25;
+    [SerializeField] private bool horizontalOnly = true;
 
     public override void OnEnter(Player _player)
     {
@@ -14,7 +15,14 @@ public class DashState : AbilityState
         if (player.Energy.HasEnergy())
         {
             player.Energy.Spend(abilityCost);
-            player.Rigid.velocity = dashSpeed * player.transform.right;
+            if (horizontalOnly)
+            {
+                player.Rigid.velocity = dashSpeed * player.transform.right;
+            }
+            else
+            {
+                player.Rigid.velocity = dashSpeed * player.GetMouseDirection();
+            }
         }
         else
         {

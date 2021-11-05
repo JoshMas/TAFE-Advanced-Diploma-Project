@@ -7,6 +7,7 @@ public class AttackState : AbilityState
 {
     [SerializeField] private AnimationClip attack;
     [SerializeField] private AnimationClip recovery;
+    [SerializeField] private bool comboEnder = false;
 
     public override void OnEnter(Player _player)
     {
@@ -26,6 +27,8 @@ public class AttackState : AbilityState
 
     public override void OnAttack()
     {
+        if (comboEnder)
+            return;
         if(timer > attack.length)
         {
             ChangeState(typeof(AttackState));

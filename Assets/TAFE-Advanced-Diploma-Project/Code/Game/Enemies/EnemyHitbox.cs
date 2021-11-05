@@ -9,6 +9,14 @@ public class EnemyHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponentInParent<Player>().TakeDamage(damage, time);
+        Player player = collision.GetComponentInParent<Player>();
+        if (!player.Parrying)
+        {
+            player.TakeDamage(damage, time);
+        }
+        else
+        {
+            //Add the part where the enemy/projectile gets parried
+        }
     }
 }
