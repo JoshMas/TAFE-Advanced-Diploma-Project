@@ -6,10 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float walkSpeed = 1;
-    public float WalkSpeed => walkSpeed * walkSpeedMultiplier;
-    public float targetSpeedAxis;
-    private float walkSpeedMultiplier = 1;
+    public Vector2 targetSpeedAxis;
 
     [SerializeField] private float jumpStrength = 1;
     public float JumpStrength => jumpStrength;
@@ -102,13 +99,27 @@ public class Player : MonoBehaviour
     {
         isCharging = _isPressed;
         transform.localScale = new Vector3(1, isCharging ? .5f : 1, 1);
-        walkSpeedMultiplier = isCharging ? .5f : 1;
     }
 
     private void OnWalk(InputValue _value)
     {
         currentState.OnMove(_value.Get<Vector2>());
         //Debug.Log(_value.Get<float>());
+    }
+
+    private void OnAttack()
+    {
+        currentState.OnAttack();
+    }
+
+    private void OnRanged()
+    {
+        currentState.OnRanged();
+    }
+
+    private void OnInstall()
+    {
+        currentState.OnInstall();
     }
 
     private void OnAbilityOne()

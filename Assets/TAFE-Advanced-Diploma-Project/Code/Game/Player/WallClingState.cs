@@ -6,12 +6,10 @@ using UnityEngine;
 public class WallClingState : AbilityState
 {
     [SerializeField] private float slideSpeed = 1;
-    private float climbValue;
     [SerializeField] private Vector2 wallJumpStrength;
     private bool hasJumped = false;
 
     private float timer2 = 0;
-    [SerializeField] private float wallCheckInterval = .5f;
 
     private float gravityScale = 0;
 
@@ -31,7 +29,6 @@ public class WallClingState : AbilityState
         {
             ChangeState(typeof(DefaultState));
         }
-        climbValue = _walkSpeed.y;
     }
 
     public override void OnJump()
@@ -46,9 +43,9 @@ public class WallClingState : AbilityState
     {
         if (!hasJumped)
         {
-            player.Rigid.MovePosition(player.transform.position + Time.deltaTime * slideSpeed * climbValue * Vector3.up);
+            player.Rigid.MovePosition(player.transform.position + Time.deltaTime * slideSpeed * player.targetSpeedAxis.y * Vector3.up);
             timer2 += Time.fixedDeltaTime;
-            if(timer2 > wallCheckInterval)
+            if(timer2 > .1f)
             {
                 timer2 = 0;
                 if (!player.IsStillWallClinging())
@@ -71,7 +68,6 @@ public class WallClingState : AbilityState
     {
         base.OnExit();
         hasJumped = false;
-        climbValue = 0;
         player.Rigid.gravityScale = gravityScale;
     }
 }

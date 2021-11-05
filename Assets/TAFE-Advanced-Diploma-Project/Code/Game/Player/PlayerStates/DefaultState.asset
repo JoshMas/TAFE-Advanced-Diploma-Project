@@ -19,3 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da036acea39265449aa4d2db7fde3bca, type: 2}
   abilityTimeKeeper: 0.1
   abilityCost: 10
+  maxMidairJumps: 1
+  walkSpeed: 8

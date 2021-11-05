@@ -6,6 +6,7 @@ using UnityEngine;
 public class DefaultState : AbilityState
 {
     [SerializeField] private int maxMidairJumps = 1;
+    [SerializeField] private float walkSpeed = 8;
     private int midairJumpCounter = 0;
 
     private float midairJumpTimer = 0;
@@ -20,7 +21,7 @@ public class DefaultState : AbilityState
     {
 
         timer += Time.deltaTime;
-        if (timer > abilityTimeKeeper)
+        if (timer > .1f)
         {
             if (player.IsWallClinging())
             {
@@ -42,7 +43,7 @@ public class DefaultState : AbilityState
 
     public override void OnFixedUpdate()
     {
-        Vector2 targetSpeed = new Vector2(player.targetSpeedAxis * player.WalkSpeed, player.Rigid.velocity.y);
+        Vector2 targetSpeed = new Vector2(player.targetSpeedAxis.x * walkSpeed, player.Rigid.velocity.y);
         player.Rigid.velocity = Vector2.Lerp(player.Rigid.velocity, targetSpeed, 10 * Time.deltaTime);
         player.Charge();
 

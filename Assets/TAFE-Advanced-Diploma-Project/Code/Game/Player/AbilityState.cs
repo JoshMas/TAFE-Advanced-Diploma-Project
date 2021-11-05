@@ -15,9 +15,12 @@ public abstract class AbilityState : ScriptableObject
     public virtual void OnEnter(Player _player) { player = _player; }
     public virtual void OnUpdate() { }
     public virtual void OnFixedUpdate() { }
+    public virtual void OnAttack() { }
+    public virtual void OnRanged() { }
+    public virtual void OnInstall() { }
     public virtual void OnJump() { }
     public virtual void OnCrouch(bool _isPressed) { }
-    public virtual void OnMove(Vector2 _walkSpeed) { player.targetSpeedAxis = _walkSpeed.x; }
+    public virtual void OnMove(Vector2 _walkSpeed) { player.targetSpeedAxis = _walkSpeed; }
     public virtual void OnAbilityOne() { }
     public virtual void OnAbilityTwo(bool _isPressed) { }
     public virtual void OnExit() { timer = 0; }

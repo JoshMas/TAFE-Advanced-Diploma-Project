@@ -52,6 +52,30 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "4bc93758-2443-4d95-91ac-eabc76e35947",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ranged",
+                    "type": "Button",
+                    "id": "e8bf2ef2-0224-4e4f-8c1d-eeabf5278472",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Install",
+                    "type": "Button",
+                    "id": "858d54ee-0566-4a3e-9c5c-156f0f6fe307",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -241,6 +265,39 @@
                     "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "048a33bb-50a5-467a-89ba-bfbc99ee9270",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a06c1f0-1362-4441-974e-49e011e34b64",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "Ranged",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41f1320e-0edb-4591-8d2d-7a303eddb813",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "Install",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

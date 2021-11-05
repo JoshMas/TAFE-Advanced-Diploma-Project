@@ -20,3 +20,4 @@ MonoBehaviour:
   abilityTimeKeeper: 0.1
   abilityCost: 10
   maxMidairJumps: 0
+  walkSpeed: 4
