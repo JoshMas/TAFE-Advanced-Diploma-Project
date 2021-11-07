@@ -34,8 +34,6 @@ public class Player : MonoBehaviour
     [SerializeField] private EnergyBar energy;
     public EnergyBar Energy => energy;
     
-    private bool isCharging = false;
-
     [SerializeField] private float passiveChargeRate = 1;
     #endregion
 
@@ -66,7 +64,7 @@ public class Player : MonoBehaviour
     {
         currentState.OnUpdate();
         energy.CountDownDenial();
-        energy.PassiveGain(passiveChargeRate);
+        energy.Charge(passiveChargeRate * Time.deltaTime);
     }
 
     private void FixedUpdate()
@@ -99,8 +97,7 @@ public class Player : MonoBehaviour
 
     public void Crouch(bool _isPressed)
     {
-        isCharging = _isPressed;
-        transform.localScale = new Vector3(1, isCharging ? .5f : 1, 1);
+        transform.localScale = new Vector3(1, _isPressed ? .5f : 1, 1);
     }
 
     private void OnWalk(InputValue _value)
@@ -147,14 +144,6 @@ public class Player : MonoBehaviour
     public bool IsStillWallClinging()
     {
         return !IsGrounded() && Physics2D.OverlapBox(transform.position + transform.up - .5f * transform.right, wallCheckBounds, 0, groundMask);
-    }
-
-    public void Charge()
-    {
-        if (isCharging)
-        {
-            energy.Charge();
-        }
     }
 
     public Vector2 GetMouseDirection()

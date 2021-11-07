@@ -45,7 +45,6 @@ public class DefaultState : AbilityState
     {
         Vector2 targetSpeed = new Vector2(player.targetSpeedAxis.x * walkSpeed, player.Rigid.velocity.y);
         player.Rigid.velocity = Vector2.Lerp(player.Rigid.velocity, targetSpeed, 10 * Time.deltaTime);
-        player.Charge();
 
         if (targetSpeed.x > 0)
         {

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class EnergyBar
 {
     [SerializeField] private float maxEnergy = 100;
-    [SerializeField] private float rateOfGain = 25;
     [SerializeField] private Image energyBarImage;
     private float barWidth;
     private float barheight;
@@ -35,20 +34,11 @@ public class EnergyBar
         return currentEnergy > 0;
     }
 
-    public void Charge()
+    public void Charge(float _amount)
     {
         if(denyGainTimer <= 0)
         {
-            currentEnergy += rateOfGain * Time.deltaTime;
-            UpdateEnergyBar();
-        }
-    }
-
-    public void PassiveGain(float _rate)
-    {
-        if(denyGainTimer <= 0)
-        {
-            currentEnergy += _rate * Time.deltaTime;
+            currentEnergy += _amount;
             UpdateEnergyBar();
         }
     }
