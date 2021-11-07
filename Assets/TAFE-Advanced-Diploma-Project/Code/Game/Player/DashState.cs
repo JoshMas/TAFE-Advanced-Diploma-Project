@@ -23,6 +23,7 @@ public class DashState : AbilityState
             {
                 player.Rigid.velocity = dashSpeed * player.GetMouseDirection();
             }
+            player.Animator.SetTrigger("Dash");
         }
         else
         {
@@ -38,6 +39,11 @@ public class DashState : AbilityState
         {
             ChangeState(typeof(DefaultState));
         }
+    }
+
+    public override void OnAttack()
+    {
+        ChangeState(typeof(AttackState));
     }
 
     public override void OnAbilityTwo(bool _isPressed)

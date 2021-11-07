@@ -19,7 +19,16 @@ public class DefaultState : AbilityState
 
     public override void OnUpdate()
     {
+        UpdateLoop();
 
+        if(player.targetSpeedAxis.y == -1)
+        {
+            ChangeState(typeof(CrouchState));
+        }
+    }
+
+    protected void UpdateLoop()
+    {
         timer += Time.deltaTime;
         if (timer > .1f)
         {
@@ -29,10 +38,10 @@ public class DefaultState : AbilityState
             }
         }
 
-        if(midairJumpCounter >= maxMidairJumps)
+        if (midairJumpCounter >= maxMidairJumps)
         {
             midairJumpTimer += Time.deltaTime;
-            if(midairJumpTimer > .1f)
+            if (midairJumpTimer > .1f)
             {
                 midairJumpTimer = 0;
                 if (player.IsGrounded())
@@ -70,12 +79,9 @@ public class DefaultState : AbilityState
         }
     }
 
-    public override void OnCrouch(bool _isPressed)
+    public override void OnAttack()
     {
-        if (_isPressed)
-        {
-            ChangeState(typeof(CrouchState));
-        }
+        ChangeState(typeof(AttackState));
     }
 
     public override void OnAbilityOne()

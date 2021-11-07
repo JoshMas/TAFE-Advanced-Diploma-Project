@@ -248,7 +248,6 @@ MonoBehaviour:
   grappleTemplate: {fileID: 8494344551401538118, guid: 82db001b0d252154f95049c382285d7f, type: 3}
   energy:
     maxEnergy: 100
-    rateOfGain: 25
     energyBarImage: {fileID: 1986723712}
     denialImage: {fileID: 1814933328}
   passiveChargeRate: 5

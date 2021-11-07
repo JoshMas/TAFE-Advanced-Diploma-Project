@@ -9,11 +9,15 @@ public class AttackState : AbilityState
     [SerializeField] private AnimationClip recovery;
     [SerializeField] private bool comboEnder = false;
 
+    private void OnEnable()
+    {
+        abilityTimeKeeper = attack.length + recovery.length;
+    }
+
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
         player.Animator.SetTrigger("Attack");
-        abilityTimeKeeper = attack.length + recovery.length;
     }
 
     public override void OnUpdate()

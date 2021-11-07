@@ -10,26 +10,24 @@ public class CrouchState : DefaultState
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
-        player.Crouch(true);
+        player.Animator.SetFloat("Crouch", 1);
     }
 
     public override void OnUpdate()
     {
-        base.OnUpdate();
-        player.Energy.Charge(energyGain * Time.deltaTime);
-    }
+        UpdateLoop();
 
-    public override void OnCrouch(bool _isPressed)
-    {
-        if (!_isPressed)
+        if (player.targetSpeedAxis.y != -1)
         {
             ChangeState(typeof(DefaultState));
         }
+
+        player.Energy.Charge(energyGain * Time.deltaTime);
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        player.Crouch(false);
+        player.Animator.SetFloat("Crouch", 0);
     }
 }

@@ -14,14 +14,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "c8ad2ffe-6da3-4df7-82eb-9eba035b6996",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
-                },
-                {
                     "name": "Walk",
                     "type": "Value",
                     "id": "ffe3f6ec-bfd1-4997-b2de-4dcec99f5c9f",
@@ -87,28 +79,6 @@
                     "processors": "",
                     "groups": "M&K",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4ce8f21c-3e8d-43df-8ea0-5152415ac598",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "M&K",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "04d4a472-529b-47e1-810e-7622d036e2aa",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "M&K",
-                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -269,7 +239,7 @@
                 {
                     "name": "",
                     "id": "048a33bb-50a5-467a-89ba-bfbc99ee9270",
-                    "path": "",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",

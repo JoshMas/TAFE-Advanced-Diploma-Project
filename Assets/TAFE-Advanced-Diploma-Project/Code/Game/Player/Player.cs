@@ -90,16 +90,6 @@ public class Player : MonoBehaviour
         currentState.OnJump();
     }
 
-    private void OnCrouch(InputValue _value)
-    {
-        currentState.OnCrouch(_value.isPressed);
-    }
-
-    public void Crouch(bool _isPressed)
-    {
-        transform.localScale = new Vector3(1, _isPressed ? .5f : 1, 1);
-    }
-
     private void OnWalk(InputValue _value)
     {
         currentState.OnMove(_value.Get<Vector2>());
