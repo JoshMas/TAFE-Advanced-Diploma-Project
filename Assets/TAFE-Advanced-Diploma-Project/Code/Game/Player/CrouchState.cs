@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Crouch")]
 public class CrouchState : DefaultState
 {
-    [SerializeField] private float energyGain = 25;
 
     public override void OnEnter(Player _player)
     {
@@ -17,12 +16,10 @@ public class CrouchState : DefaultState
     {
         UpdateLoop();
 
-        if (player.targetSpeedAxis.y != -1)
+        if (player.exactSpeedAxis.y != -1)
         {
             ChangeState(typeof(DefaultState));
         }
-
-        player.Energy.Charge(energyGain * Time.deltaTime);
     }
 
     public override void OnExit()

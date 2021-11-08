@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    public Vector2 targetSpeedAxis;
+    public Vector2 exactSpeedAxis;
+    public Vector2 lerpSpeedAxis;
 
     [SerializeField] private float jumpStrength = 1;
     public float JumpStrength => jumpStrength;
@@ -33,8 +34,6 @@ public class Player : MonoBehaviour
     #region energybar
     [SerializeField] private EnergyBar energy;
     public EnergyBar Energy => energy;
-    
-    [SerializeField] private float passiveChargeRate = 1;
     #endregion
 
     [SerializeField] private AbilityState currentState;
@@ -62,9 +61,23 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        MoveLerpSpeedAxis();
         currentState.OnUpdate();
         energy.CountDownDenial();
-        energy.Charge(passiveChargeRate * Time.deltaTime);
+    }
+
+    private void MoveLerpSpeedAxis()
+    {
+        if((lerpSpeedAxis - exactSpeedAxis).magnitude < 0.001f)
+        {
+            lerpSpeedAxis = exactSpeedAxis;
+        }
+        else
+        {
+            lerpSpeedAxis = Vector2.Lerp(lerpSpeedAxis, exactSpeedAxis, 10 * Time.deltaTime);
+        }
+        Animator.SetFloat("xSpeed", lerpSpeedAxis.x);
+        Animator.SetFloat("ySpeed", lerpSpeedAxis.y);
     }
 
     private void FixedUpdate()
@@ -92,7 +105,8 @@ public class Player : MonoBehaviour
 
     private void OnWalk(InputValue _value)
     {
-        currentState.OnMove(_value.Get<Vector2>());
+        exactSpeedAxis = _value.Get<Vector2>();
+        currentState.OnMove();
         //Debug.Log(_value.Get<float>());
     }
 

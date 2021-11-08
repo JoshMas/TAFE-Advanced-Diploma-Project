@@ -11,6 +11,9 @@ public class DefaultState : AbilityState
 
     private float midairJumpTimer = 0;
 
+    [SerializeField] private float energyGain = 25;
+
+
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
@@ -21,7 +24,7 @@ public class DefaultState : AbilityState
     {
         UpdateLoop();
 
-        if(player.targetSpeedAxis.y == -1)
+        if(player.exactSpeedAxis.y == -1)
         {
             ChangeState(typeof(CrouchState));
         }
@@ -48,12 +51,14 @@ public class DefaultState : AbilityState
                     midairJumpCounter = 0;
             }
         }
+
+        player.Energy.Charge(energyGain * Time.deltaTime);
     }
 
     public override void OnFixedUpdate()
     {
-        Vector2 targetSpeed = new Vector2(player.targetSpeedAxis.x * walkSpeed, player.Rigid.velocity.y);
-        player.Rigid.velocity = Vector2.Lerp(player.Rigid.velocity, targetSpeed, 10 * Time.deltaTime);
+        Vector2 targetSpeed = new Vector2(player.lerpSpeedAxis.x * walkSpeed, player.Rigid.velocity.y);
+        player.Rigid.velocity = targetSpeed;
 
         if (targetSpeed.x > 0)
         {

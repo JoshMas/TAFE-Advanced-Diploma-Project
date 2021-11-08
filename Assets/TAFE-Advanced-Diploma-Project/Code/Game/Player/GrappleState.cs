@@ -60,7 +60,7 @@ public class GrappleState : AbilityState
 
     public override void OnFixedUpdate()
     {
-        player.Rigid.AddForce(player.targetSpeedAxis * swingStrength * Vector2.right);
+        player.Rigid.AddForce(player.exactSpeedAxis * swingStrength * Vector2.right);
     }
 
     public override void OnAbilityTwo(bool _isPressed)

@@ -22,10 +22,9 @@ public class WallClingState : AbilityState
         player.Rigid.gravityScale = 0;
     }
 
-    public override void OnMove(Vector2 _walkSpeed)
+    public override void OnMove()
     {
-        base.OnMove(_walkSpeed);
-        if (_walkSpeed.x == player.transform.right.x)
+        if (player.exactSpeedAxis.x == player.transform.right.x)
         {
             ChangeState(typeof(DefaultState));
         }
@@ -43,7 +42,7 @@ public class WallClingState : AbilityState
     {
         if (!hasJumped)
         {
-            player.Rigid.MovePosition(player.transform.position + Time.deltaTime * slideSpeed * player.targetSpeedAxis.y * Vector3.up);
+            player.Rigid.MovePosition(player.transform.position + Time.deltaTime * slideSpeed * player.exactSpeedAxis.y * Vector3.up);
             timer2 += Time.fixedDeltaTime;
             if(timer2 > .1f)
             {

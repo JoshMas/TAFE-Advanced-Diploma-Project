@@ -19,7 +19,7 @@ public abstract class AbilityState : ScriptableObject
     public virtual void OnRanged() { }
     public virtual void OnInstall() { }
     public virtual void OnJump() { }
-    public virtual void OnMove(Vector2 _walkSpeed) { player.targetSpeedAxis = _walkSpeed; }
+    public virtual void OnMove() { }
     public virtual void OnAbilityOne() { }
     public virtual void OnAbilityTwo(bool _isPressed) { }
     public virtual void OnExit() { timer = 0; }
