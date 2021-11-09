@@ -243,14 +243,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63047549f715b914d994b780eb1ddcd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSpeedAxis: {x: 0, y: 0}
+  exactSpeedAxis: {x: 0, y: 0}
+  lerpSpeedAxis: {x: 0, y: 0}
   jumpStrength: 14
   grappleTemplate: {fileID: 8494344551401538118, guid: 82db001b0d252154f95049c382285d7f, type: 3}
   energy:
     maxEnergy: 100
     energyBarImage: {fileID: 1986723712}
     denialImage: {fileID: 1814933328}
-  passiveChargeRate: 5
   currentState: {fileID: 11400000, guid: 6c7f02743899f63488f765939f2f1035, type: 2}
 --- !u!1 &75423908
 GameObject:
@@ -489,6 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 242120481}
   - component: {fileID: 242120482}
+  - component: {fileID: 242120483}
   m_Layer: 7
   m_Name: Hitbox
   m_TagString: Untagged
@@ -520,12 +521,24 @@ CircleCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &242120483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242120480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67ef9343a7044949987b93d2fb06748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &529962866
 GameObject:
   m_ObjectHideFlags: 0

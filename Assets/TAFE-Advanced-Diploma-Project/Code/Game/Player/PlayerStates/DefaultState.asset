@@ -22,3 +22,4 @@ MonoBehaviour:
   abilityCost: 0
   maxMidairJumps: 1
   walkSpeed: 8
+  energyGain: 5

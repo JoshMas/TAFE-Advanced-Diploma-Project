@@ -9,9 +9,12 @@ public class AttackState : AbilityState
     [SerializeField] private AnimationClip recovery;
     [SerializeField] private bool comboEnder = false;
 
-    private void OnEnable()
+    private void OnValidate()
     {
-        abilityTimeKeeper = attack.length + recovery.length;
+        if (attack != null && recovery != null)
+            abilityTimeKeeper = attack.length + recovery.length;
+        else
+            abilityTimeKeeper = 0;
     }
 
     public override void OnEnter(Player _player)
