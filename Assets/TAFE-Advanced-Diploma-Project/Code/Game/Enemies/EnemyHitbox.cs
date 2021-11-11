@@ -16,6 +16,7 @@ public class EnemyHitbox : MonoBehaviour
         }
         else
         {
+            player.Parry(damage);
             //Add the part where the enemy/projectile gets parried
         }
     }

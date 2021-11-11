@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ab5d9931a0b224b932a1288ccc3d9d, type: 3}
+  m_Name: Parry
+  m_EditorClassIdentifier: 
+  transitions:
+  - {fileID: 11400000, guid: ac70ae46d835f7d499b2bd04b84cdcd8, type: 2}
+  - {fileID: 11400000, guid: 6c7f02743899f63488f765939f2f1035, type: 2}
+  abilityTimeKeeper: 0.5
+  abilityCost: 10
+  attack: {fileID: 7400000, guid: 29415b48f9a3e654a99380d265424697, type: 2}
+  recovery: {fileID: 0}
+  comboEnder: 1

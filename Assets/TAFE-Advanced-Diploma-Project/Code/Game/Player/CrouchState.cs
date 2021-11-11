@@ -25,6 +25,5 @@ public class CrouchState : DefaultState
     public override void OnExit()
     {
         base.OnExit();
-        player.Animator.SetFloat("Crouch", 0);
     }
 }

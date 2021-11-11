@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     #endregion
 
     [SerializeField] private AbilityState currentState;
-    private bool isParrying = false;
+    [SerializeField] private bool isParrying = false;
     public bool Parrying => isParrying;
 
     private void Awake()
@@ -115,9 +115,9 @@ public class Player : MonoBehaviour
         currentState.OnAttack();
     }
 
-    private void OnRanged()
+    private void OnRanged(InputValue _value)
     {
-        currentState.OnRanged();
+        currentState.OnRanged(_value.isPressed);
     }
 
     private void OnInstall()
@@ -185,6 +185,12 @@ public class Player : MonoBehaviour
             //Game Over here
             Debug.Log("Game Over");
         }
+    }
+
+    public void Parry(float _amount)
+    {
+        Energy.Parry(_amount);
+        Animator.SetTrigger("Attack");
     }
 
     private void OnOpenMenu()

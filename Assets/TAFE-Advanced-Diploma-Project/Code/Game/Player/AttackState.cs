@@ -13,6 +13,8 @@ public class AttackState : AbilityState
     {
         if (attack != null && recovery != null)
             abilityTimeKeeper = attack.length + recovery.length;
+        else if (attack != null && recovery == null)
+            abilityTimeKeeper = attack.length;
         else
             abilityTimeKeeper = 0;
     }

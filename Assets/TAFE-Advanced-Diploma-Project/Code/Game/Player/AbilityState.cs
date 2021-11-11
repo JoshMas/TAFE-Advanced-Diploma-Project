@@ -16,7 +16,7 @@ public abstract class AbilityState : ScriptableObject
     public virtual void OnUpdate() { }
     public virtual void OnFixedUpdate() { }
     public virtual void OnAttack() { }
-    public virtual void OnRanged() { }
+    public virtual void OnRanged(bool _isPressed) { }
     public virtual void OnInstall() { }
     public virtual void OnJump() { }
     public virtual void OnMove() { }

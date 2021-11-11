@@ -43,6 +43,12 @@ public class EnergyBar
         }
     }
 
+    public void Parry(float _amount)
+    {
+        currentEnergy += _amount;
+        UpdateEnergyBar();
+    }
+
     /// <summary>
     /// Use this method to make the player take damage.
     /// It removes a chunk of health, and they cannot regain health by crouching for some time.

@@ -17,6 +17,7 @@ public class DefaultState : AbilityState
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
+        player.Animator.SetFloat("Crouch", 0);
         midairJumpCounter = 0;
     }
 
@@ -28,19 +29,20 @@ public class DefaultState : AbilityState
         {
             ChangeState(typeof(CrouchState));
         }
-    }
 
-    protected void UpdateLoop()
-    {
         timer += Time.deltaTime;
-        if (timer > .1f)
+        if (timer > .05f)
         {
             if (player.IsWallClinging())
             {
                 ChangeState(typeof(WallClingState));
             }
+            timer = 0;
         }
+    }
 
+    protected void UpdateLoop()
+    {
         if (midairJumpCounter >= maxMidairJumps)
         {
             midairJumpTimer += Time.deltaTime;
