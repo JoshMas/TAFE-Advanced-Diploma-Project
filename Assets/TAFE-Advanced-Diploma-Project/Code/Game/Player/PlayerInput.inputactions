@@ -59,7 +59,7 @@
                     "id": "e8bf2ef2-0224-4e4f-8c1d-eeabf5278472",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "Install",
@@ -97,17 +97,6 @@
                     "name": "",
                     "id": "2a3c78e9-d7b8-4bae-924a-71fadb6033ab",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "M&K",
-                    "action": "Ability Two",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "504bf502-c487-401f-8b90-833c7d8ef7db",
-                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",
@@ -239,7 +228,7 @@
                 {
                     "name": "",
                     "id": "048a33bb-50a5-467a-89ba-bfbc99ee9270",
-                    "path": "<Keyboard>/f",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",
@@ -250,7 +239,7 @@
                 {
                     "name": "",
                     "id": "4a06c1f0-1362-4441-974e-49e011e34b64",
-                    "path": "",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",
@@ -261,7 +250,7 @@
                 {
                     "name": "",
                     "id": "41f1320e-0edb-4591-8d2d-7a303eddb813",
-                    "path": "",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",
