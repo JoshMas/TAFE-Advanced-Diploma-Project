@@ -11,6 +11,7 @@ public class RangedState : AbilityState
     {
         base.OnEnter(_player);
         Instantiate(projectileTemplate, player.transform.position, player.transform.rotation);
+        player.Animator.SetBool("Ranged", true);
     }
 
     public override void OnRanged(bool _isPressed)
@@ -19,5 +20,11 @@ public class RangedState : AbilityState
         {
             ChangeState(typeof(DefaultState));
         }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        player.Animator.SetBool("Ranged", false);
     }
 }
