@@ -27,6 +27,8 @@ public class AttackState : AbilityState
 
     public override void OnUpdate()
     {
+        base.OnUpdate();
+
         timer += Time.deltaTime;
         if(timer > abilityTimeKeeper)
         {

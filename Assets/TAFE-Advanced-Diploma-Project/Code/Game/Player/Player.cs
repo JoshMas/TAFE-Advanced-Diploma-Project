@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class Player : MonoBehaviour
 {
     public Vector2 exactSpeedAxis;
@@ -152,7 +152,8 @@ public class Player : MonoBehaviour
 
     public Vector2 GetMouseDirection()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 mouse = Mouse.current.position.ReadValue();
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(mouse + Vector3.forward * 18);
         return (mousePos - transform.position).normalized;
     }
 
@@ -178,12 +179,18 @@ public class Player : MonoBehaviour
         grappleLine.SetPosition(1, Grapple.position);
     }
 
-    public void TakeDamage(float _damage, float _time)
+    public void TakeDamage(float _damage, float _time, Vector2 _knockback)
     {
         if(energy.TakeDamage(_damage, _time))
         {
             //Game Over here
             Debug.Log("Game Over");
+            Animator.SetTrigger("Dead");
+        }
+        else
+        {
+            currentState.ChangeState(typeof(StunnedState));
+            Rigid.AddForce(_knockback, ForceMode2D.Impulse);
         }
     }
 

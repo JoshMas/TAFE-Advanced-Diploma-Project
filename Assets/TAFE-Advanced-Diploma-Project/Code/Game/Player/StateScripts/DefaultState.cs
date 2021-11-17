@@ -6,7 +6,6 @@ using UnityEngine;
 public class DefaultState : AbilityState
 {
     [SerializeField] private int maxMidairJumps = 1;
-    [SerializeField] private float walkSpeed = 8;
     private int midairJumpCounter = 0;
 
     private float midairJumpTimer = 0;
@@ -23,9 +22,26 @@ public class DefaultState : AbilityState
 
     public override void OnUpdate()
     {
-        UpdateLoop();
+        base.OnUpdate();
 
-        if(player.exactSpeedAxis.y == -1)
+        if (midairJumpCounter >= maxMidairJumps)
+        {
+            midairJumpTimer += Time.deltaTime;
+            if (midairJumpTimer > .1f)
+            {
+                midairJumpTimer = 0;
+                if (player.IsGrounded())
+                    midairJumpCounter = 0;
+            }
+        }
+        player.Energy.Charge(energyGain * Time.deltaTime);
+
+        StateTransitions();
+    }
+
+    protected virtual void StateTransitions()
+    {
+        if (player.exactSpeedAxis.y == -1)
         {
             ChangeState(typeof(CrouchState));
         }
@@ -41,32 +57,15 @@ public class DefaultState : AbilityState
         }
     }
 
-    protected void UpdateLoop()
-    {
-        if (midairJumpCounter >= maxMidairJumps)
-        {
-            midairJumpTimer += Time.deltaTime;
-            if (midairJumpTimer > .1f)
-            {
-                midairJumpTimer = 0;
-                if (player.IsGrounded())
-                    midairJumpCounter = 0;
-            }
-        }
-
-        player.Energy.Charge(energyGain * Time.deltaTime);
-    }
-
     public override void OnFixedUpdate()
     {
-        Vector2 targetSpeed = new Vector2(player.lerpSpeedAxis.x * walkSpeed, player.Rigid.velocity.y);
-        player.Rigid.velocity = targetSpeed;
+        base.OnFixedUpdate();
 
-        if (targetSpeed.x > 0)
+        if (player.Rigid.velocity.x > 0)
         {
             player.transform.forward = Vector3.forward;
         }
-        else if (targetSpeed.x < 0)
+        else if (player.Rigid.velocity.x < 0)
         {
             player.transform.forward = Vector3.back;
         }

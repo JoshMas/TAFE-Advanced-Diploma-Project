@@ -15,8 +15,10 @@ MonoBehaviour:
   transitions:
   - {fileID: 11400000, guid: ac70ae46d835f7d499b2bd04b84cdcd8, type: 2}
   - {fileID: 11400000, guid: 6c7f02743899f63488f765939f2f1035, type: 2}
+  - {fileID: 11400000, guid: 6128cf26c41f4f94ba9d0f93d1ed0dfd, type: 2}
   abilityTimeKeeper: 0.5
   abilityCost: 10
+  moveSpeed: 0
   attack: {fileID: 7400000, guid: 29415b48f9a3e654a99380d265424697, type: 2}
   recovery: {fileID: 0}
   comboEnder: 1

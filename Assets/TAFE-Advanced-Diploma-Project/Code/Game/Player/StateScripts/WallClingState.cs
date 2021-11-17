@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/WallCling")]
 public class WallClingState : AbilityState
 {
-    [SerializeField] private float slideSpeed = 1;
     [SerializeField] private Vector2 wallJumpStrength;
     private bool hasJumped = false;
 
@@ -42,7 +41,7 @@ public class WallClingState : AbilityState
     {
         if (!hasJumped)
         {
-            player.Rigid.MovePosition(player.transform.position + Time.deltaTime * slideSpeed * player.exactSpeedAxis.y * Vector3.up);
+            player.Rigid.MovePosition(player.transform.position + Time.deltaTime * moveSpeed * player.exactSpeedAxis.y * Vector3.up);
             timer2 += Time.fixedDeltaTime;
             if(timer2 > .1f)
             {

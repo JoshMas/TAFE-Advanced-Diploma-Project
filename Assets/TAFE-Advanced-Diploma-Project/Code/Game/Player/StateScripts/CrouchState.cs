@@ -12,10 +12,8 @@ public class CrouchState : DefaultState
         player.Animator.SetFloat("Crouch", 1);
     }
 
-    public override void OnUpdate()
+    protected override void StateTransitions()
     {
-        UpdateLoop();
-
         if (player.exactSpeedAxis.y != -1)
         {
             ChangeState(typeof(DefaultState));

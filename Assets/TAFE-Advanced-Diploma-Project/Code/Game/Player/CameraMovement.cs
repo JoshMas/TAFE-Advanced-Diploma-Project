@@ -20,20 +20,20 @@ public class CameraMovement : MonoBehaviour
         Vector2 distance = player.transform.position - transform.position;
         if(distance.x > maxHorizontalDistance)
         {
-            transform.position = new Vector3(player.transform.position.x - maxHorizontalDistance, transform.position.y, -10);
+            transform.position = new Vector3(player.transform.position.x - maxHorizontalDistance, transform.position.y, -18);
         }
         else if(-distance.x > maxHorizontalDistance)
         {
-            transform.position = new Vector3(player.transform.position.x + maxHorizontalDistance, transform.position.y, -10);
+            transform.position = new Vector3(player.transform.position.x + maxHorizontalDistance, transform.position.y, -18);
         }
 
         if(distance.y > maxVerticalDistance)
         {
-            transform.position = new Vector3(transform.position.x, player.transform.position.y - maxVerticalDistance, -10);
+            transform.position = new Vector3(transform.position.x, player.transform.position.y - maxVerticalDistance, -18);
         }
         else if(-distance.y > maxVerticalDistance)
         {
-            transform.position = new Vector3(transform.position.x, player.transform.position.y + maxVerticalDistance, -10);
+            transform.position = new Vector3(transform.position.x, player.transform.position.y + maxVerticalDistance, -18);
         }
     }
 }

@@ -7,7 +7,6 @@ public class GrappleState : AbilityState
 {
     [SerializeField] private float grappleRange = 10;
     [SerializeField] private float grappleSpeed = 10;
-    [SerializeField] private float swingStrength = 5;
 
     private Vector2 targetLocation = Vector2.zero;
     private bool targetFound = false;
@@ -60,7 +59,7 @@ public class GrappleState : AbilityState
 
     public override void OnFixedUpdate()
     {
-        player.Rigid.AddForce(player.exactSpeedAxis * swingStrength * Vector2.right);
+        player.Rigid.AddForce(player.exactSpeedAxis * moveSpeed * Vector2.right);
     }
 
     public override void OnAbilityTwo(bool _isPressed)

@@ -5,25 +5,25 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerStates/Dash")]
 public class DashState : AbilityState
 {
-    [SerializeField] private float dashSpeed = 25;
+    private Vector2 dash;
     [SerializeField] private bool horizontalOnly = true;
 
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
-        player.Rigid.velocity = Vector2.zero;
         if (player.Energy.HasEnergy())
         {
             player.Energy.Spend(abilityCost);
             if (horizontalOnly)
             {
-                player.Rigid.velocity = dashSpeed * player.transform.right;
+                dash = moveSpeed * player.transform.right;
             }
             else
             {
-                player.Rigid.velocity = dashSpeed * player.GetMouseDirection();
+                dash = moveSpeed * player.GetMouseDirection();
             }
             player.Animator.SetTrigger("Dash");
+            player.Rigid.velocity = Vector2.zero;
         }
         else
         {
@@ -39,6 +39,11 @@ public class DashState : AbilityState
         {
             ChangeState(typeof(DefaultState));
         }
+    }
+
+    public override void OnFixedUpdate()
+    {
+        player.Rigid.MovePosition(player.Rigid.position + dash * Time.fixedDeltaTime);
     }
 
     public override void OnAttack()
