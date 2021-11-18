@@ -99,6 +99,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        TempSpawner.Instance.Spawn();
         Destroy(gameObject);
     }
 }
