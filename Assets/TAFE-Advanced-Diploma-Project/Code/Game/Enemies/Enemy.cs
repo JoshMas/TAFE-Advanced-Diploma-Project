@@ -74,10 +74,17 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float _amount)
     {
         health -= _amount;
+        animator.SetTrigger("Damage");
         if(health <= 0)
         {
             Die();
         }
+    }
+
+    public void Parried()
+    {
+        currentState.ChangeState(this, typeof(EnemyIdle));
+        animator.SetTrigger("Stunned");
     }
 
     public bool PlayerInLineOfSight(float _distance)
@@ -88,7 +95,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            return Physics2D.Raycast(transform.position, GetDirectionToPlayer(), _distance, groundMask);
+            return !Physics2D.Raycast(transform.position, GetDirectionToPlayer(), _distance, groundMask);
         }
     }
 
