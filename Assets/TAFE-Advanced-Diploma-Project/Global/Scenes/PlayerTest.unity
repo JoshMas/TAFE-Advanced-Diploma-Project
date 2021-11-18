@@ -742,6 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67ef9343a7044949987b93d2fb06748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &270601940
 GameObject:
   m_ObjectHideFlags: 0
@@ -6723,6 +6724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67ef9343a7044949987b93d2fb06748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &870644646
 GameObject:
   m_ObjectHideFlags: 0
@@ -7083,19 +7085,22 @@ Transform:
   m_Father: {fileID: 1141938830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1062457797
-SphereCollider:
+--- !u!58 &1062457797
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062457795}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1062457798
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7196,7 +7201,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -7214,8 +7219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea44e2c5ad43a9a4390232603dd33499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  currentState: {fileID: 0}
+  maxHealth: 10
+  currentState: {fileID: 11400000, guid: adb1d35389e5e964ca863dfe763a167c, type: 2}
 --- !u!95 &1141938833
 Animator:
   serializedVersion: 3
@@ -7226,7 +7231,7 @@ Animator:
   m_GameObject: {fileID: 1141938829}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 892df8b4d529e0d40a921e50ea3ba674, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7719,7 +7724,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1361537694}
   - component: {fileID: 1361537695}
-  m_Layer: 0
+  - component: {fileID: 1361537696}
+  m_Layer: 10
   m_Name: hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7756,6 +7762,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1361537696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361537693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad9d0aeb09431a449252de2e80eebcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  time: 3
+  knockback: {x: 5, y: 5}
 --- !u!1 &1384028014
 GameObject:
   m_ObjectHideFlags: 0

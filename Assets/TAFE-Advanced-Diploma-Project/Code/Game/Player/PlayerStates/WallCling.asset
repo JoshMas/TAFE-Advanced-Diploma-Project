@@ -18,4 +18,5 @@ MonoBehaviour:
   abilityTimeKeeper: 0.25
   abilityCost: 10
   moveSpeed: 7
+  energyGain: 5
   wallJumpStrength: {x: 5, y: 7}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHitbox : MonoBehaviour
 {
-    private float damage;
+    [SerializeField] private float damage;
     public float Damage
     {
         get
@@ -19,6 +19,6 @@ public class PlayerHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        collision.GetComponentInParent<Enemy>().TakeDamage(damage);
     }
 }

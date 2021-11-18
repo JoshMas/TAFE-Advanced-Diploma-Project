@@ -36,17 +36,33 @@ public class EnergyBar
 
     public void Charge(float _amount)
     {
-        if(denyGainTimer <= 0)
+        if(_amount < 0)
+        {
+            currentEnergy += _amount;
+            UpdateEnergyBar();
+        }
+        else if (denyGainTimer <= 0)
         {
             currentEnergy += _amount;
             UpdateEnergyBar();
         }
     }
 
-    public void Parry(float _amount)
+    public void Charge(float _amount, bool _ignoreDenial)
     {
-        currentEnergy += _amount;
-        UpdateEnergyBar();
+        if (_ignoreDenial)
+        {
+            currentEnergy += _amount;
+            UpdateEnergyBar();
+        }
+        else
+        {
+            if(denyGainTimer <= 0)
+            {
+                currentEnergy += _amount;
+                UpdateEnergyBar();
+            }
+        }
     }
 
     /// <summary>
@@ -72,12 +88,6 @@ public class EnergyBar
         maxDenyGain = denyGainTimer;
         UpdateDenialBar();
         return false;
-    }
-
-    public void Spend(float _energyCost)
-    {
-        currentEnergy -= _energyCost;
-        UpdateEnergyBar();
     }
 
     private void UpdateEnergyBar()

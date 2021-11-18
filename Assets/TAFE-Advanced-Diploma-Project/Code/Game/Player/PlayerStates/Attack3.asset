@@ -18,6 +18,7 @@ MonoBehaviour:
   abilityTimeKeeper: 0.65
   abilityCost: 10
   moveSpeed: 0
+  energyGain: 5
   attack: {fileID: 7400000, guid: 1bf4c53b54294bb4a8cc44e5d6adbb75, type: 2}
   recovery: {fileID: 7400000, guid: d31175732c457664b97d618d3fb783c3, type: 2}
   comboEnder: 1

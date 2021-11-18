@@ -12,12 +12,14 @@ public abstract class AbilityState : ScriptableObject
     protected float timer = 0;
     [SerializeField] protected float abilityCost = 10;
     [SerializeField] protected float moveSpeed = 0;
+    [SerializeField] protected float energyGain = 0;
 
     public virtual void OnEnter(Player _player) { player = _player; }
     public virtual void OnUpdate()
     {
         player.Animator.SetFloat("xSpeed", Mathf.Abs(player.lerpSpeedAxis.x));
-        player.Animator.SetFloat("ySpeed", Mathf.Clamp(.5f * player.Rigid.velocity.y, -1, 1));
+        player.Animator.SetFloat("ySpeed", Mathf.Clamp(.25f * player.Rigid.velocity.y, -1, 1));
+        player.Energy.Charge(energyGain * Time.deltaTime);
     }
     public virtual void OnFixedUpdate()
     {

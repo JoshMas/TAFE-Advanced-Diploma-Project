@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee6e82ff91d2c3f4592c34591c3f5dda, type: 3}
-  m_Name: Stunned
+  m_Script: {fileID: 11500000, guid: dc88c96bb457eff4aae7c2f0b4578c60, type: 3}
+  m_Name: Idle
   m_EditorClassIdentifier: 
   transitions:
-  - {fileID: 11400000, guid: 6c7f02743899f63488f765939f2f1035, type: 2}
-  abilityTimeKeeper: 0.5
-  abilityCost: 0
-  moveSpeed: 0
-  energyGain: 0
-  stunAnim: {fileID: 0}
+  - {fileID: 11400000, guid: 23a630e706fa93c489e9c2957e6d34b6, type: 2}
+  force: 20
+  maxSpeed: 2
+  detectionRadius: 10
+  idleTime: 1

@@ -15,7 +15,7 @@ public class EnemyState : ScriptableObject
     public virtual void OnFixedUpdate(Enemy _enemy) { }
     public virtual void OnExit(Enemy _enemy) { }
 
-    private void ChangeState(Enemy _enemy, Type t)
+    public void ChangeState(Enemy _enemy, Type t)
     {
         foreach(EnemyState transition in transitions)
         {

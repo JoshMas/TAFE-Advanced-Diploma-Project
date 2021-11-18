@@ -13,7 +13,7 @@ public class DashState : AbilityState
         base.OnEnter(_player);
         if (player.Energy.HasEnergy())
         {
-            player.Energy.Spend(abilityCost);
+            player.Energy.Charge(-abilityCost);
             if (horizontalOnly)
             {
                 dash = moveSpeed * player.transform.right;

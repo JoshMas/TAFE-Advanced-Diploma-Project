@@ -18,5 +18,6 @@ MonoBehaviour:
   abilityTimeKeeper: 1
   abilityCost: 20
   moveSpeed: 2
+  energyGain: 0
   grappleRange: 20
   grappleSpeed: 50

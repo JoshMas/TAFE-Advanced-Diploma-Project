@@ -7,11 +7,8 @@ public class DefaultState : AbilityState
 {
     [SerializeField] private int maxMidairJumps = 1;
     private int midairJumpCounter = 0;
-
+    private bool isMidair = false;
     private float midairJumpTimer = 0;
-
-    [SerializeField] private float energyGain = 25;
-
 
     public override void OnEnter(Player _player)
     {
@@ -24,16 +21,32 @@ public class DefaultState : AbilityState
     {
         base.OnUpdate();
 
-        if (midairJumpCounter >= maxMidairJumps)
+        if (isMidair)
         {
             midairJumpTimer += Time.deltaTime;
             if (midairJumpTimer > .1f)
             {
                 midairJumpTimer = 0;
                 if (player.IsGrounded())
+                {
+                    isMidair = false;
                     midairJumpCounter = 0;
+                }
             }
         }
+        else
+        {
+            midairJumpTimer += Time.deltaTime;
+            if (midairJumpTimer > .1f)
+            {
+                midairJumpTimer = 0;
+                if (!player.IsGrounded())
+                {
+                    isMidair = true;
+                }
+            }
+        }
+        player.Animator.SetBool("Midair", isMidair);
         player.Energy.Charge(energyGain * Time.deltaTime);
 
         StateTransitions();
@@ -77,11 +90,13 @@ public class DefaultState : AbilityState
         if (player.IsGrounded())
         {
             player.Rigid.velocity = new Vector2(player.Rigid.velocity.x, player.JumpStrength);
+            player.Animator.SetTrigger("Jumped");
         }
         else if(maxMidairJumps > midairJumpCounter)
         {
             player.Rigid.velocity = new Vector2(player.Rigid.velocity.x, player.JumpStrength);
             ++midairJumpCounter;
+            player.Animator.SetTrigger("Jumped");
         }
     }
 

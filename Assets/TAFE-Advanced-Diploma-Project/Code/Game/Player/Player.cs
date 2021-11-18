@@ -12,13 +12,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpStrength = 1;
     public float JumpStrength => jumpStrength;
 
-    public Rigidbody2D Rigid { get; private set; }
+    private Rigidbody2D rigid;
+    public Rigidbody2D Rigid => rigid;
 
-    public Animator Animator { get; private set; }
+    private Animator animator;
+    public Animator Animator => animator;
 
     #region grapplingHook
     [SerializeField] private GameObject grappleTemplate;
-    public Transform Grapple { get; private set; }
+    private Transform grapple;
+    public Transform Grapple => grapple;
     private LineRenderer grappleLine;
     private DistanceJoint2D grappleSpring;
     #endregion
@@ -42,8 +45,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        Rigid = GetComponent<Rigidbody2D>();
-        Animator = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         energy.Initialise();
 
@@ -51,12 +54,12 @@ public class Player : MonoBehaviour
         if(currentState != null)
             currentState.OnEnter(this);
 
-        Grapple = Instantiate(grappleTemplate).transform;
-        grappleLine = Grapple.GetComponent<LineRenderer>();
-        grappleSpring = Grapple.GetComponent<DistanceJoint2D>();
+        grapple = Instantiate(grappleTemplate).transform;
+        grappleLine = grapple.GetComponent<LineRenderer>();
+        grappleSpring = grapple.GetComponent<DistanceJoint2D>();
         grappleSpring.connectedBody = Rigid;
         grappleSpring.enabled = false;
-        Grapple.gameObject.SetActive(false);
+        grapple.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -159,7 +162,7 @@ public class Player : MonoBehaviour
 
     public void GrappleActive(bool _isActive)
     {
-        Grapple.gameObject.SetActive(_isActive);
+        grapple.gameObject.SetActive(_isActive);
     }
 
     public void GrappleAttach(bool _isAttached)
@@ -174,9 +177,9 @@ public class Player : MonoBehaviour
 
     public void UpdateGrapplePosition(Vector2 _position)
     {
-        Grapple.position = _position;
+        grapple.position = _position;
         grappleLine.SetPosition(0, transform.position);
-        grappleLine.SetPosition(1, Grapple.position);
+        grappleLine.SetPosition(1, grapple.position);
     }
 
     public void TakeDamage(float _damage, float _time, Vector2 _knockback)
@@ -196,7 +199,7 @@ public class Player : MonoBehaviour
 
     public void Parry(float _amount)
     {
-        Energy.Parry(_amount);
+        Energy.Charge(_amount, true);
         Animator.SetTrigger("Attack");
     }
 

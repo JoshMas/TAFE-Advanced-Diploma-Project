@@ -19,7 +19,7 @@ public class GrappleState : AbilityState
 
         if (player.Energy.HasEnergy())
         {
-            player.Energy.Spend(abilityCost);
+            player.Energy.Charge(-abilityCost);
         }
         else
         {

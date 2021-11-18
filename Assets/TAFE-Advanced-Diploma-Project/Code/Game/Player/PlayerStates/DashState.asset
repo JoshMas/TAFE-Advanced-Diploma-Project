@@ -20,4 +20,5 @@ MonoBehaviour:
   abilityTimeKeeper: 0.1
   abilityCost: 25
   moveSpeed: 25
+  energyGain: 5
   horizontalOnly: 1
