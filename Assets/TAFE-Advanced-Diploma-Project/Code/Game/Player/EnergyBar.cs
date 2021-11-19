@@ -29,9 +29,9 @@ public class EnergyBar
         UpdateDenialBar();
     }
 
-    public bool HasEnergy()
+    public bool HasEnergy(float _cost)
     {
-        return currentEnergy > 0;
+        return currentEnergy > _cost;
     }
 
     public void Charge(float _amount)

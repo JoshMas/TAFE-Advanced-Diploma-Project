@@ -17,13 +17,19 @@ public class GrappleState : AbilityState
     {
         base.OnEnter(_player);
 
-        if (player.Energy.HasEnergy())
+        if (player.Energy.HasEnergy(abilityCost))
         {
             player.Energy.Charge(-abilityCost);
+        }
+        else if (player.Health.HasEnergy(abilityCost))
+        {
+            player.Energy.Charge(-abilityCost);
+            player.Health.TakeDamage(abilityCost / 2, 1);
         }
         else
         {
             ChangeState(typeof(DefaultState));
+            return;
         }
 
         targetLocation = GetTargetLocation();

@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     public EnergyBar Energy => energy;
     #endregion
 
+    [SerializeField] private EnergyBar health;
+    public EnergyBar Health => health;
+
     [SerializeField] private AbilityState currentState;
     [SerializeField] private bool isParrying = false;
     public bool Parrying => isParrying;
@@ -60,6 +63,8 @@ public class Player : MonoBehaviour
         grappleSpring.connectedBody = Rigid;
         grappleSpring.enabled = false;
         grapple.gameObject.SetActive(false);
+        health.Initialise();
+        health.Charge(100);
     }
 
     private void Update()
@@ -67,6 +72,7 @@ public class Player : MonoBehaviour
         MoveLerpSpeedAxis();
         currentState.OnUpdate();
         energy.CountDownDenial();
+        health.CountDownDenial();
     }
 
     private void MoveLerpSpeedAxis()
@@ -79,8 +85,8 @@ public class Player : MonoBehaviour
         {
             lerpSpeedAxis = Vector2.Lerp(lerpSpeedAxis, exactSpeedAxis, 10 * Time.deltaTime);
         }
-        Animator.SetFloat("xSpeed", lerpSpeedAxis.x);
-        Animator.SetFloat("ySpeed", lerpSpeedAxis.y);
+        animator.SetFloat("xSpeed", lerpSpeedAxis.x);
+        animator.SetFloat("ySpeed", lerpSpeedAxis.y);
     }
 
     private void FixedUpdate()
@@ -184,23 +190,23 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float _damage, float _time, Vector2 _knockback)
     {
-        if(energy.TakeDamage(_damage, _time))
+        if(health.TakeDamage(_damage, _time))
         {
             //Game Over here
             Debug.Log("Game Over");
-            Animator.SetTrigger("Dead");
+            animator.SetTrigger("Dead");
         }
         else
         {
             currentState.ChangeState(typeof(StunnedState));
-            Rigid.AddForce(_knockback, ForceMode2D.Impulse);
+            rigid.AddForce(_knockback, ForceMode2D.Impulse);
         }
     }
 
     public void Parry(float _amount)
     {
-        Energy.Charge(_amount, true);
-        Animator.SetTrigger("Attack");
+        health.Charge(_amount, true);
+        animator.SetTrigger("Attack");
     }
 
     private void OnOpenMenu()
