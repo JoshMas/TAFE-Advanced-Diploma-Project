@@ -105,6 +105,11 @@ public class DefaultState : AbilityState
         ChangeState(typeof(AttackState));
     }
 
+    public override void OnParry()
+    {
+        player.Animator.SetTrigger("Parry");
+        ChangeState(typeof(AttackState), 1);
+    }
     public override void OnAbilityOne()
     {
         ChangeState(typeof(DashState));

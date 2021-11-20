@@ -144,6 +144,11 @@ public class Player : MonoBehaviour
         currentState.OnAbilityTwo(_value.isPressed);
     }
 
+    private void OnParry()
+    {
+        currentState.OnParry();
+    }
+
     public bool IsGrounded()
     {
         return Physics2D.OverlapBox(transform.position, groundCheckBounds, 0, groundMask);

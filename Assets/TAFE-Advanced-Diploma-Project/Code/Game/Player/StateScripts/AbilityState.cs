@@ -33,6 +33,7 @@ public abstract class AbilityState : ScriptableObject
     public virtual void OnMove() { }
     public virtual void OnAbilityOne() { }
     public virtual void OnAbilityTwo(bool _isPressed) { }
+    public virtual void OnParry() { }
     public virtual void OnExit() { timer = 0; }
 
     /// <summary>
@@ -48,6 +49,26 @@ public abstract class AbilityState : ScriptableObject
             {
                 player.ChangeState(transition);
                 return;
+            }
+        }
+    }
+
+    public void ChangeState(Type t, int num)
+    {
+        int counter = num;
+        foreach(AbilityState transition in transitions)
+        {
+            if(transition.GetType() == t)
+            {
+                if(counter <= 0)
+                {
+                    player.ChangeState(transition);
+                    return;
+                }
+                else
+                {
+                    counter--;
+                }
             }
         }
     }

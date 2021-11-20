@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Parry",
+                    "type": "Button",
+                    "id": "65b7f6e9-0371-4542-bc23-ea0d74e49bcd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -96,7 +104,7 @@
                 {
                     "name": "",
                     "id": "2a3c78e9-d7b8-4bae-924a-71fadb6033ab",
-                    "path": "<Keyboard>/e",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",
@@ -255,6 +263,17 @@
                     "processors": "",
                     "groups": "M&K",
                     "action": "Install",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b654e52-6855-4640-bd31-9d9f7955b61f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
