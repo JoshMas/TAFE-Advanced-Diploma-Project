@@ -126,7 +126,16 @@ AnimationClip:
     path: hitbox
     classID: 58
     script: {fileID: 0}
-  m_PPtrCurves: []
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: 2100000, guid: 59a6d383bc38bfa4ca79f055f844a1aa, type: 2}
+    - time: 1
+      value: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+    attribute: m_Materials.Array.data[0]
+    path: Sphere
+    classID: 23
+    script: {fileID: 0}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -141,6 +150,13 @@ AnimationClip:
       typeID: 58
       customType: 0
       isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1381327793
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 23
+      customType: 21
+      isPPtrCurve: 1
     - serializedVersion: 2
       path: 1381327793
       attribute: 3
@@ -162,13 +178,15 @@ AnimationClip:
       typeID: 58
       customType: 0
       isPPtrCurve: 0
-    pptrCurveMapping: []
+    pptrCurveMapping:
+    - {fileID: 2100000, guid: 59a6d383bc38bfa4ca79f055f844a1aa, type: 2}
+    - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 1.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

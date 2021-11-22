@@ -6,6 +6,8 @@ using UnityEngine;
 public class StunnedState : AbilityState
 {
     [SerializeField] private AnimationClip stunAnim;
+    [SerializeField] private float gravityScale = .1f;
+    private float oldGravityScale;
 
     private void OnValidate()
     {
@@ -19,6 +21,8 @@ public class StunnedState : AbilityState
     {
         base.OnEnter(_player);
         player.Animator.SetTrigger("Damage");
+        oldGravityScale = player.Rigid.gravityScale;
+        player.Rigid.gravityScale = gravityScale;
     }
 
     public override void OnUpdate()
@@ -32,4 +36,10 @@ public class StunnedState : AbilityState
     }
 
     public override void OnFixedUpdate() { }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        player.Rigid.gravityScale = oldGravityScale;
+    }
 }
