@@ -57,15 +57,15 @@ public class GrappleState : AbilityState
             }
             if (attached)
             {
-                if(!canJump && player.GetGrappleAngle() < jumpAngle)
-                {
-                    canJump = true;
-                }
-
                 if(canJump && player.GetGrappleAngle() > jumpAngle)
                 {
                     jumped = true;
+                    DetachGrapple();
                     player.Rigid.AddForce(player.GetGrappleVector() * moveSpeed, ForceMode2D.Impulse);
+                }
+                else if (player.GetGrappleAngle() < jumpAngle)
+                {
+                    canJump = true;
                 }
             }
         }
@@ -112,13 +112,30 @@ public class GrappleState : AbilityState
     {
         if (!_isPressed)
         {
-            ChangeState(typeof(DefaultState));
+            if (autoVersion)
+            {
+                jumped = true;
+                DetachGrapple();
+                player.Rigid.AddForce(player.GetGrappleVector() * moveSpeed, ForceMode2D.Impulse);
+            }
+            else
+            {
+               ChangeState(typeof(DefaultState));
+            }
         }
     }
 
     public override void OnExit()
     {
         base.OnExit();
+        DetachGrapple();
+
+        canJump = false;
+        jumped = false;
+    }
+
+    private void DetachGrapple()
+    {
         attached = false;
         targetFound = false;
         targetLocation = Vector2.zero;
@@ -127,9 +144,6 @@ public class GrappleState : AbilityState
         player.UpdateGrapplePosition(player.transform.position);
         player.GrappleAttach(false);
         player.GrappleActive(false);
-
-        canJump = false;
-        jumped = false;
     }
 
     private Vector2 GetTargetLocation()
