@@ -13,6 +13,11 @@ public class GrappleState : AbilityState
     private Transform targetTransform;
     private bool attached = false;
 
+    [SerializeField] private bool autoVersion = false;
+    private bool canJump = false;
+    [SerializeField] private float jumpAngle = 45;
+    private bool jumped = false;
+
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
@@ -39,6 +44,31 @@ public class GrappleState : AbilityState
 
     public override void OnUpdate()
     {
+        if (autoVersion)
+        {
+            if (jumped)
+            {
+                timer += Time.deltaTime;
+                if(timer > .5f)
+                {
+                    ChangeState(typeof(DefaultState));
+                }
+                return;
+            }
+            if (attached)
+            {
+                if(!canJump && player.GetGrappleAngle() < jumpAngle)
+                {
+                    canJump = true;
+                }
+
+                if(canJump && player.GetGrappleAngle() > jumpAngle)
+                {
+                    jumped = true;
+                    player.Rigid.AddForce(player.GetGrappleVector() * moveSpeed, ForceMode2D.Impulse);
+                }
+            }
+        }
         if (attached)
         {
             player.UpdateGrapplePosition(player.Grapple.position);
@@ -65,7 +95,17 @@ public class GrappleState : AbilityState
 
     public override void OnFixedUpdate()
     {
-        player.Rigid.AddForce(player.exactSpeedAxis * moveSpeed * Vector2.right);
+        if (attached && !jumped)
+        {
+            if (autoVersion)
+            {
+                player.Rigid.velocity = player.GetGrappleVector() * moveSpeed;
+            }
+            else
+            {
+                player.Rigid.AddForce(player.exactSpeedAxis * moveSpeed * Vector2.right);
+            }
+        }
     }
 
     public override void OnAbilityTwo(bool _isPressed)
@@ -87,6 +127,9 @@ public class GrappleState : AbilityState
         player.UpdateGrapplePosition(player.transform.position);
         player.GrappleAttach(false);
         player.GrappleActive(false);
+
+        canJump = false;
+        jumped = false;
     }
 
     private Vector2 GetTargetLocation()

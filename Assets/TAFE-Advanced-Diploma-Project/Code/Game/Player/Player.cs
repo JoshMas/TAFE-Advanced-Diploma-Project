@@ -193,6 +193,17 @@ public class Player : MonoBehaviour
         grappleLine.SetPosition(1, grapple.position);
     }
 
+    public float GetGrappleAngle()
+    {
+        return Vector2.Angle(Vector2.up, grapple.position - transform.position);
+    }
+
+    public Vector2 GetGrappleVector()
+    {
+        Vector2 vector = transform.right != Vector3.right ? grapple.position - transform.position : transform.position - grapple.position;
+        return Vector2.Perpendicular(vector.normalized);
+    }
+
     public void TakeDamage(float _damage, float _time, Vector2 _knockback)
     {
         if(health.TakeDamage(_damage, _time))
@@ -204,7 +215,7 @@ public class Player : MonoBehaviour
         else
         {
             currentState.ChangeState(typeof(StunnedState));
-            rigid.AddForce(_knockback, ForceMode2D.Impulse);
+            rigid.velocity = _knockback;
         }
     }
 

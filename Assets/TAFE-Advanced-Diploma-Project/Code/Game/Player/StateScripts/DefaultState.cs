@@ -62,7 +62,7 @@ public class DefaultState : AbilityState
         timer += Time.deltaTime;
         if (timer > .05f)
         {
-            if (player.IsWallClinging())
+            if (player.IsWallClinging() && player.exactSpeedAxis.y == 1)
             {
                 ChangeState(typeof(WallClingState));
             }

@@ -23,7 +23,7 @@ public class EnemyHitbox : MonoBehaviour
         Player player = collision.GetComponentInParent<Player>();
         if (!player.Parrying)
         {
-            player.TakeDamage(damage, time, knockback * transform.right);
+            player.TakeDamage(damage, time, new Vector2(knockback.x * transform.right.normalized.x, knockback.y));
         }
         else
         {
