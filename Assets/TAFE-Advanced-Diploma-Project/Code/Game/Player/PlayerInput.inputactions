@@ -104,7 +104,18 @@
                 {
                     "name": "",
                     "id": "2a3c78e9-d7b8-4bae-924a-71fadb6033ab",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "M&K",
+                    "action": "Ability Two",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a227c36a-94f8-433e-9210-f546b931e744",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",
@@ -269,7 +280,7 @@
                 {
                     "name": "",
                     "id": "6b654e52-6855-4640-bd31-9d9f7955b61f",
-                    "path": "<Keyboard>/e",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "M&K",
