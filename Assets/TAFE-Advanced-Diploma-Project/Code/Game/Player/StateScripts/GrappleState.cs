@@ -49,7 +49,7 @@ public class GrappleState : AbilityState
             if (jumped)
             {
                 timer += Time.deltaTime;
-                if(timer > .5f)
+                if(timer > abilityTimeKeeper)
                 {
                     ChangeState(typeof(DefaultState));
                 }
