@@ -10,7 +10,8 @@ public class RangedState : AbilityState
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
-        Instantiate(projectileTemplate, player.transform.position, player.transform.rotation);
+        GameObject projectile = Instantiate(projectileTemplate, player.transform.position, player.transform.rotation);
+        projectile.transform.right = player.GetMouseDirection();
         player.Animator.SetBool("Ranged", true);
     }
 

@@ -21,4 +21,5 @@ MonoBehaviour:
   abilityCost: 0
   moveSpeed: 4
   energyGain: 25
+  gravityScale: 3
   maxMidairJumps: 0

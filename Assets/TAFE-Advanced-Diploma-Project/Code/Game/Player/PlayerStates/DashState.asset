@@ -21,4 +21,5 @@ MonoBehaviour:
   abilityCost: 25
   moveSpeed: 25
   energyGain: 5
+  gravityScale: 0
   horizontalOnly: 1

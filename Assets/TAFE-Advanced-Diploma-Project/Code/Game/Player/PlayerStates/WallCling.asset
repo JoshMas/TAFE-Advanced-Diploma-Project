@@ -19,4 +19,5 @@ MonoBehaviour:
   abilityCost: 10
   moveSpeed: 7
   energyGain: 5
+  gravityScale: 0
   wallJumpStrength: {x: 5, y: 7}

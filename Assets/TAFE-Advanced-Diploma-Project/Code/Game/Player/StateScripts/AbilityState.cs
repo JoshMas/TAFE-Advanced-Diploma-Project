@@ -13,8 +13,13 @@ public abstract class AbilityState : ScriptableObject
     [SerializeField] protected float abilityCost = 10;
     [SerializeField] protected float moveSpeed = 0;
     [SerializeField] protected float energyGain = 0;
+    [SerializeField] protected float gravityScale = 3;
 
-    public virtual void OnEnter(Player _player) { player = _player; }
+    public virtual void OnEnter(Player _player) 
+    { 
+        player = _player;
+        player.Rigid.gravityScale = gravityScale;
+    }
     public virtual void OnUpdate()
     {
         player.Animator.SetFloat("xSpeed", Mathf.Abs(player.lerpSpeedAxis.x));

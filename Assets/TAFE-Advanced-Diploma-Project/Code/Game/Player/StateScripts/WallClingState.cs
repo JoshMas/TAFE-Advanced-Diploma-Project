@@ -9,16 +9,11 @@ public class WallClingState : AbilityState
     private bool hasJumped = false;
 
     private float timer2 = 0;
-
-    private float gravityScale = 0;
-
     public override void OnEnter(Player _player)
     {
         base.OnEnter(_player);
         player.Rigid.velocity = Vector2.zero;
         player.transform.forward = -player.transform.forward;
-        gravityScale = player.Rigid.gravityScale;
-        player.Rigid.gravityScale = 0;
     }
 
     public override void OnMove()
@@ -66,6 +61,5 @@ public class WallClingState : AbilityState
     {
         base.OnExit();
         hasJumped = false;
-        player.Rigid.gravityScale = gravityScale;
     }
 }
