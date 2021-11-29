@@ -316,7 +316,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 638072cc9d8c1544ba1a5a54ccbdb685, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &70465756
 Animator:
@@ -494,6 +494,7 @@ MonoBehaviour:
   damage: 10
   time: 3
   knockback: {x: 0, y: 0}
+  parryable: 1
 --- !u!114 &100403330
 MonoBehaviour:
   m_ObjectHideFlags: 0

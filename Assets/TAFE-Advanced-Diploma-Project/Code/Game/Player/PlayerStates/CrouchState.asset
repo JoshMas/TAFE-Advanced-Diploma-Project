@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c7f02743899f63488f765939f2f1035, type: 2}
   - {fileID: 11400000, guid: da036acea39265449aa4d2db7fde3bca, type: 2}
   - {fileID: 11400000, guid: 6128cf26c41f4f94ba9d0f93d1ed0dfd, type: 2}
+  - {fileID: 11400000, guid: 14747b7c56fecc94ba7970061916c8d0, type: 2}
   abilityTimeKeeper: 0.1
   abilityCost: 0
   moveSpeed: 4

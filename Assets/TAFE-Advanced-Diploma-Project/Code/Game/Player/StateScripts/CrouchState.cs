@@ -20,6 +20,11 @@ public class CrouchState : DefaultState
         }
     }
 
+    public override void OnAttack()
+    {
+        ChangeState(typeof(FastfallState));
+    }
+
     public override void OnExit()
     {
         base.OnExit();

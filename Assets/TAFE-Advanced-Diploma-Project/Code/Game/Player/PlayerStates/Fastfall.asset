@@ -19,4 +19,4 @@ MonoBehaviour:
   abilityCost: 10
   moveSpeed: 0
   energyGain: 0
-  gravityScale: 6
+  gravityScale: 15

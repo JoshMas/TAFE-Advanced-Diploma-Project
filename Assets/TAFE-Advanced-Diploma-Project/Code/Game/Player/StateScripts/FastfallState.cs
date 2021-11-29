@@ -6,16 +6,21 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="PlayerStates/Fastfall")]
 public class FastfallState : AbilityState
 {
-    [SerializeField] private Type stateType;
     public override void OnUpdate()
     {
         base.OnUpdate();
+        //player.Rigid.MovePosition(player.transform.position + moveSpeed * Time.deltaTime * Vector3.down);
+        //if (player.IsGrounded())
+        //{
+        //    ChangeState(typeof(AttackState));
+        //}
         timer += Time.deltaTime;
-        if(timer > .1f)
+        if (timer > .1f)
         {
+            timer = 0;
             if (player.IsGrounded())
             {
-                ChangeState(stateType);
+                ChangeState(typeof(AttackState));
             }
         }
     }

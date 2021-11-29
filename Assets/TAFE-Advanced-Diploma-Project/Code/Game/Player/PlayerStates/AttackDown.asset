@@ -22,4 +22,4 @@ MonoBehaviour:
   gravityScale: 3
   attack: {fileID: 0}
   recovery: {fileID: 0}
-  comboEnder: 0
+  comboEnder: 1
