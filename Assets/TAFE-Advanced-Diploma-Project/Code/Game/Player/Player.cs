@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
     public Vector2 GetMouseDirection()
     {
         Vector3 mouse = Mouse.current.position.ReadValue();
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(mouse + Vector3.forward * 18);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(mouse + Vector3.forward * -Camera.main.transform.position.z);
         return (mousePos - transform.position).normalized;
     }
 
