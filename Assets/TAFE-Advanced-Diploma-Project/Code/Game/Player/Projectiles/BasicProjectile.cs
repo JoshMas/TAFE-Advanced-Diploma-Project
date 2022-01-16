@@ -6,17 +6,27 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class BasicProjectile : MonoBehaviour
 {
+    [SerializeField] protected float gravityScale = 0;
+
+    [Space]
 
     [SerializeField] protected float speed = 1;
     [SerializeField] protected float duration = 1;
     private float timer = 0;
 
-    private Player player;
+    protected Player player;
     protected Rigidbody2D rigid;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        rigid.gravityScale = gravityScale;
+        OnAwake();
+    }
+
+    protected virtual void OnAwake()
+    {
+
     }
 
     // Start is called before the first frame update
@@ -29,25 +39,14 @@ public class BasicProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        OnUpdate();
 
-        if(duration == -1)
-        {
-            return;
-        }
-        if(timer >= duration)
-        {
-            Activate();
-        }
-        else
-        {
-            timer += Time.deltaTime;
-        }
+        
     }
 
     private void FixedUpdate()
     {
-        FixedMove();
+        OnFixedUpdate();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -62,18 +61,26 @@ public class BasicProjectile : MonoBehaviour
     
     protected virtual void OnStart()
     {
-
+        rigid.velocity = (GetMousePosition() - (Vector2)transform.position).normalized * speed;
     }
 
-    protected virtual void Move()
+    protected virtual void OnUpdate()
     {
-
+        if (duration == -1)
+        {
+            return;
+        }
+        if (timer >= duration)
+        {
+            Activate();
+        }
+        else
+        {
+            timer += Time.deltaTime;
+        }
     }
 
-    protected virtual void FixedMove()
-    {
-        
-    }
+    protected virtual void OnFixedUpdate() { }
 
     public virtual void Activate()
     {
