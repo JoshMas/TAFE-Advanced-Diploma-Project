@@ -21,13 +21,11 @@ public class BasicProjectile : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         rigid.gravityScale = gravityScale;
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         OnAwake();
     }
 
-    protected virtual void OnAwake()
-    {
-
-    }
+    protected virtual void OnAwake() { }
 
     // Start is called before the first frame update
     void Start()

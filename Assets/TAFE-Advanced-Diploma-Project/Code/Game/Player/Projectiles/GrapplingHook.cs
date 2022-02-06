@@ -12,10 +12,16 @@ public class GrapplingHook : BasicProjectile
     {
         distanceJoint = GetComponent<DistanceJoint2D>();
 
-        distanceJoint.connectedBody = player.Rigid;
         distanceJoint.enabled = false;
         line = GetComponent<LineRenderer>();
         line.positionCount = 2;
+    }
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+
+        distanceJoint.connectedBody = player.Rigid;
     }
 
     protected override void OnUpdate()
